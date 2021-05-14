@@ -30,6 +30,12 @@
                 <i class="fa fa-database"></i>
             </a>
         </li>
+        <li>
+            <a href="<?php echo site_url('materials/index'); ?>" title="<?php _trans('materials'); ?>"
+               class="tip" data-placement="right">
+                <i class="fa fa-adjust"></i>
+            </a>
+        </li>
         <?php if (get_setting('projects_enabled') == 1) : ?>
             <li>
                 <a href="<?php echo site_url('tasks/index'); ?>" title="<?php _trans('tasks'); ?>"

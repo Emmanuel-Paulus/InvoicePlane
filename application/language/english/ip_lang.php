@@ -720,5 +720,16 @@ $lang = array(
 
     // Types
     'true'                                         => 'True',
-    'false'                                        => 'False'
+    'false'                                        => 'False',
+    
+    // material
+    'material_description'                          => 'Material description',
+    'material_name'                                 => 'Materiaal name',
+    'material_price'                                => 'Price',
+    'materials'                                     => 'Material',
+    'materials_form'                                => 'Material Form',
+    'material_provider_name'                        => 'Provider Name',
+    'materiallist'                                  => 'Bill of Material',
+    'create_material'                               => 'Create Material',
+    'view_materials'                                => 'View Material'
 );

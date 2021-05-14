@@ -167,6 +167,19 @@
 
                     </div>
                 </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <?php _trans('materiallist'); ?>
+                    </div>
+                    <div class="panel-body">
+
+                        <div id="filter_results">
+                            <?php $this->layout->load_view('materials/partial_material_list'); ?>
+                        </div>
+
+                    </div>
+                </div>
 
             </div>
         </div>
