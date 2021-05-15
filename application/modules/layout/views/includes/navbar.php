@@ -86,6 +86,7 @@
                     <ul class="dropdown-menu">
                         <li><?php echo anchor('materials/form', trans('create_material')); ?></li>
                         <li><?php echo anchor('materials/index', trans('view_materials')); ?></li>
+                        <li><?php echo anchor('pictures/index', trans('view_pictures')); ?></li>
                     </ul>
                 </li>
 

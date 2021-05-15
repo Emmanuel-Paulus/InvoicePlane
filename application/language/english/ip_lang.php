@@ -731,5 +731,15 @@ $lang = array(
     'material_provider_name'                        => 'Provider Name',
     'materiallist'                                  => 'Bill of Material',
     'create_material'                               => 'Create Material',
-    'view_materials'                                => 'View Material'
+    'view_materials'                                => 'View Material',
+
+    // pictures
+    'picture'                                      => 'Afbeelding',
+    'picture_description'                          => 'Picture description',
+    'picture_name'                                 => 'Picture name',
+    'pictures'                                     => 'Picture',
+    'pictures_form'                                => 'Picture Form',
+    'new-picture'                                  => 'New Picture',
+    'create_picture'                               => 'Create Picture',
+    'view_picture'                                 => 'View Picture'
 );
