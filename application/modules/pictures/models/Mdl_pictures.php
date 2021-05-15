@@ -105,6 +105,17 @@ class Mdl_Pictures extends Response_Model
     }
 
     /**
+     * Returns the picture url
+     *
+     * @param $picture_id
+     * @return string
+     */
+    public function get_url($picture)    
+    {
+        return $this->picture_url . $picture->picture_name;
+    }
+    
+    /**
      * Returns the picture for html
      *
      * @param $picture_id
@@ -117,7 +128,7 @@ class Mdl_Pictures extends Response_Model
         }
         $picture= $this->get_picture($picture_id);
         if ($picture) {
-            return '<img width="160" src="' . $this->picture_url . $picture->picture_name . '">';
+            return '<img width="160" src="' . $this->get_url($picture) . '">';
         }
 
         return '';
@@ -172,5 +183,34 @@ class Mdl_Pictures extends Response_Model
         $picture= $this->get_picture($id);
         unlink($this->picture_map . $picture->picture_name);
         parent::delete($id);
+    }
+
+    /**
+     * @param $image_id
+     * @param $field_id
+     */
+    public function SelectBlock($picture_id, $field_id ="picture_id")
+    {
+        $pictures = $this->get()->result();
+        echo "<div class='panel-body'>\n";
+        echo "<input type='checkbox' id='image-picker-switch' class='image-picker-switch'/>\n";
+        echo "<label for='image-picker-switch'>" . trans('picture_picker') . "</label>\n";
+        echo "<select id='" . $field_id . "' name='" . $field_id . "' class='image-picker'>\n";
+        echo "<option>" . trans("select_picture") . "</option>\n";
+        $picture_url = "";
+        foreach ($pictures as $picture) {
+            //echo "<optgroup label='XXX'>\n"; ** for further development of groups.
+            echo "<option data-img-src='" . $this->get_url($picture) . "' value='" . $picture->picture_id . "'"; 
+            if ($picture_id == $picture->picture_id) {
+                echo " selected";
+                $picture_url = $this->get_url($picture);
+            }
+            echo ">" . $picture->picture_name . "</option>\n";
+            //echo "</optgroup>\n"; ** for further development of groups.
+        }
+        echo "</select>\n";
+        echo "<div class='thumbnail selected'>\n";
+        echo "<img id='" . $field_id . "_sel' class='image-picker_sel image_picker_image' src='" . $picture_url . "'>\n";
+        echo "</div>\n";
     }
 }

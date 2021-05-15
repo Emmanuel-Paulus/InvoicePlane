@@ -100,7 +100,11 @@ class Mdl_Products extends Response_Model
                 'label' => trans('tax_rate'),
                 'rules' => 'numeric'
             ),
-            // Sumex
+            'picture_id' => array(
+                'field' => 'picture_id',
+                'label' => trans('picture'),
+                'rules' => 'numeric'
+            ),            // Sumex
             'product_tariff' => array(
                 'field' => 'product_tariff',
                 'label' => trans('product_tariff'),

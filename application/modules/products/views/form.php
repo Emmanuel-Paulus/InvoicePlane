@@ -116,6 +116,12 @@
 
                     </div>
                 </div>
+                
+                <div class="panel panel-default">
+                    <div class='panel-heading'><?php _trans('picture'); ?></div>
+                    <?php $this->mdl_pictures->SelectBlock($this->mdl_products->form_value('picture_id')); ?>
+                </div>
+
             </div>
 
             <div class="col-xs-12 col-md-6">

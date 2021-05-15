@@ -64,6 +64,7 @@ class Products extends Admin_Controller
         $this->load->model('units/mdl_units');
         $this->load->model('tax_rates/mdl_tax_rates');
         $this->load->model('materials/mdl_materials');
+        $this->load->model('pictures/mdl_pictures');
 
         $this->layout->set(
             array(

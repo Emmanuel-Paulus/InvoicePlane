@@ -740,6 +740,8 @@ $lang = array(
     'pictures'                                     => 'Picture',
     'pictures_form'                                => 'Picture Form',
     'new-picture'                                  => 'New Picture',
+    'picture_picker'                               => 'Picturepicker',
+    'select_picture'                               => 'Select Picture',
     'create_picture'                               => 'Create Picture',
     'view_picture'                                 => 'View Picture'
 );

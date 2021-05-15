@@ -61,6 +61,7 @@ class Materials extends Admin_Controller
         }
 
         $this->load->model('products/mdl_products');
+        $this->load->model('pictures/mdl_pictures');
 
         $this->layout->set(
             array(

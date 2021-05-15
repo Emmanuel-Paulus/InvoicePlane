@@ -82,6 +82,11 @@ class Mdl_Materials extends Response_Model
                 'label' => trans('product'),
                 'rules' => 'numeric'
             ),
+            'picture_id' => array(
+                'field' => 'picture_id',
+                'label' => trans('picture'),
+                'rules' => 'numeric'
+            ),            
         );
     }
 

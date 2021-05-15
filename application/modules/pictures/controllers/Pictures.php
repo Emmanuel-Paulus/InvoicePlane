@@ -71,5 +71,4 @@ class Pictures extends Admin_Controller
         $this->mdl_pictures->delete($id);
         redirect('pictures');
     }
-
 }
