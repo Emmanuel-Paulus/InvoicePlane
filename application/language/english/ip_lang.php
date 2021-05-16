@@ -743,5 +743,5 @@ $lang = array(
     'picture_picker'                               => 'Picturepicker',
     'select_picture'                               => 'Select Picture',
     'create_picture'                               => 'Create Picture',
-    'view_picture'                                 => 'View Picture'
+    'view_pictures'                                => 'View Picture'
 );

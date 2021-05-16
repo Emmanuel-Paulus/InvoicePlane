@@ -30,7 +30,7 @@ class Mdl_Materials extends Response_Model
 
     public function default_join()
     {
-        $this->db->join('ip_products', 'ip_products.product_id = ip_materials.product_id', 'left');
+        $this->db->join('ip_pictures', 'ip_pictures.picture_id = ip_materials.picture_id', 'left');
     }
 
     public function by_material($match)

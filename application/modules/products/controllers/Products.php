@@ -30,6 +30,7 @@ class Products extends Admin_Controller
      */
     public function index($page = 0)
     {
+        $this->load->model('pictures/mdl_pictures');
         $this->mdl_products->paginate(site_url('products/index'), $page);
         $products = $this->mdl_products->result();
 

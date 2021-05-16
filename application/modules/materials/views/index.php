@@ -12,17 +12,16 @@
     </div>
 
 </div>
-
 <div id="content" class="table-content">
 
     <?php $this->layout->load_view('layout/alerts'); ?>
 
     <div class="table-responsive">
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped table-picture">
 
             <thead>
             <tr>
-                <th><?php _trans('product'); ?></th>
+                <th><?php _trans('id'); ?></th>
                 <th><?php _trans('material_name'); ?></th>
                 <th><?php _trans('material_description'); ?></th>
                 <th><?php _trans('material_price'); ?></th>
@@ -34,7 +33,9 @@
             <tbody>
             <?php foreach ($materials as $material) { ?>
                 <tr>
-                    <td><?php _htmlsc($material->product_name); ?></td>
+                    <td><?php _htmlsc($material->material_id); ?>
+                        <?php echo $this->mdl_pictures->htmlpicture($material->picture_id);?>
+                    </td>
                     <td><?php _htmlsc($material->material_name); ?></td>
                     <td><?php echo nl2br(htmlsc($material->material_description)); ?></td>
                     <td class="amount"><?php echo format_currency($material->material_price); ?></td>

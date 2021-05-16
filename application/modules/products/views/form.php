@@ -117,11 +117,6 @@
                     </div>
                 </div>
                 
-                <div class="panel panel-default">
-                    <div class='panel-heading'><?php _trans('picture'); ?></div>
-                    <?php $this->mdl_pictures->SelectBlock($this->mdl_products->form_value('picture_id')); ?>
-                </div>
-
             </div>
 
             <div class="col-xs-12 col-md-6">
@@ -153,6 +148,14 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="picture_id">
+                                <?php _trans('picture'); ?>
+                            </label>
+                            <?php $this->mdl_pictures->ImageBlock($this->mdl_products->form_value('picture_id')); ?>
+                            <?php $this->mdl_pictures->SelectBlock($this->mdl_products->form_value('picture_id')); ?>
+                        </div>
+
                     </div>
                 </div>
 
@@ -170,24 +173,23 @@
                             <input type="text" name="product_tariff" id="product_tariff" class="form-control"
                                    value="<?php echo $this->mdl_products->form_value('product_tariff', true); ?>">
                         </div>
-
                     </div>
                 </div>
-                
+            </div>
+
+            <div class="col-xs-12 col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <?php _trans('materiallist'); ?>
                     </div>
                     <div class="panel-body">
-
                         <div id="filter_results">
                             <?php $this->layout->load_view('materials/partial_material_list'); ?>
                         </div>
-
                     </div>
                 </div>
-
             </div>
+
         </div>
 
     </div>

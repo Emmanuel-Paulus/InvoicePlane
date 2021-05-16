@@ -30,6 +30,7 @@ class Materials extends Admin_Controller
      */
     public function index($page = 0)
     {
+        $this->load->model('pictures/mdl_pictures');
         $this->mdl_materials->paginate(site_url('materials/index'), $page);
         $materials = $this->mdl_materials->result();
 

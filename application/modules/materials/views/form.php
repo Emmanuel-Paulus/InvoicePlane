@@ -74,12 +74,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="panel panel-default">
-                    <div class='panel-heading'><?php _trans('picture'); ?></div>
-                    <?php $this->mdl_pictures->SelectBlock($this->mdl_materials->form_value('picture_id')); ?>
-                </div>
-
             </div>
 
             <div class="col-xs-12 col-md-6">
@@ -99,10 +93,19 @@
                                    value="<?php echo $this->mdl_materials->form_value('material_provider_name', true); ?>">
                         </div>
 
+
+                        <div class="form-group">
+                            <label for="picture_id">
+                                <?php _trans('picture'); ?>
+                            </label>
+                            <?php $this->mdl_pictures->ImageBlock($this->mdl_materials->form_value('picture_id')); ?>
+                            <?php $this->mdl_pictures->SelectBlock($this->mdl_materials->form_value('picture_id')); ?>
+                        </div>
+                        
                     </div>
                 </div>
-
             </div>
+
         </div>
 
     </div>

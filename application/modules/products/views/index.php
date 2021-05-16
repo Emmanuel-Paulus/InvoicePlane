@@ -18,7 +18,7 @@
     <?php $this->layout->load_view('layout/alerts'); ?>
 
     <div class="table-responsive">
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped table-picture">
 
             <thead>
             <tr>
@@ -39,7 +39,9 @@
             <tbody>
             <?php foreach ($products as $product) { ?>
                 <tr>
-                    <td><?php _htmlsc($product->family_name); ?></td>
+                    <td><?php _htmlsc($product->family_name); ?>
+                        <?php echo $this->mdl_pictures->htmlpicture($product->picture_id);?>
+                    </td>
                     <td><?php _htmlsc($product->product_sku); ?></td>
                     <td><?php _htmlsc($product->product_name); ?></td>
                     <td><?php echo nl2br(htmlsc($product->product_description)); ?></td>

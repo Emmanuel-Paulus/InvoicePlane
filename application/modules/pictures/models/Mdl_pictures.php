@@ -107,12 +107,12 @@ class Mdl_Pictures extends Response_Model
     /**
      * Returns the picture url
      *
-     * @param $picture_id
+     * @param $picture
      * @return string
      */
     public function get_url($picture)    
     {
-        return $this->picture_url . $picture->picture_name;
+        return $picture ? $this->picture_url . $picture->picture_name : "";
     }
     
     /**
@@ -186,13 +186,13 @@ class Mdl_Pictures extends Response_Model
     }
 
     /**
-     * @param $image_id
+     * @param $picture_id
      * @param $field_id
      */
     public function SelectBlock($picture_id, $field_id ="picture_id")
     {
         $pictures = $this->get()->result();
-        echo "<div class='panel-body'>\n";
+        echo "<div class='form-group'>\n";
         echo "<input type='checkbox' id='image-picker-switch' class='image-picker-switch'/>\n";
         echo "<label for='image-picker-switch'>" . trans('picture_picker') . "</label>\n";
         echo "<select id='" . $field_id . "' name='" . $field_id . "' class='image-picker'>\n";
@@ -209,8 +209,19 @@ class Mdl_Pictures extends Response_Model
             //echo "</optgroup>\n"; ** for further development of groups.
         }
         echo "</select>\n";
+        echo "</div>\n";
+    }
+
+    /**
+     * @param $picture_id
+     * @param $field_id
+     */
+    public function ImageBlock($picture_id, $field_id ="picture_id")
+    {
+        $picture_url = $this->get_url($this->get_picture($picture_id));
+        echo "<div class='form-group'>\n";
         echo "<div class='thumbnail selected'>\n";
         echo "<img id='" . $field_id . "_sel' class='image-picker_sel image_picker_image' src='" . $picture_url . "'>\n";
-        echo "</div>\n";
+        echo "</div>\n</div>\n";
     }
 }
