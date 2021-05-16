@@ -28,6 +28,7 @@ function generate_invoice_pdf($invoice_id, $stream = true, $invoice_template = n
     $CI->load->model('invoices/mdl_invoice_tax_rates');
     $CI->load->model('custom_fields/mdl_custom_fields');
     $CI->load->model('payment_methods/mdl_payment_methods');
+    $CI->load->model('pictures/mdl_pictures');
 
     $CI->load->helper('country');
     $CI->load->helper('client');
@@ -57,6 +58,7 @@ function generate_invoice_pdf($invoice_id, $stream = true, $invoice_template = n
         if ($item->item_discount != '0.00') {
             $show_item_discounts = true;
         }
+        $item->image = $CI->mdl_pictures->htmlpicture($item->item_picture_id);
     }
 
     // Get all custom fields
@@ -214,6 +216,7 @@ function generate_quote_pdf($quote_id, $stream = true, $quote_template = null)
     $CI->load->model('quotes/mdl_quote_items');
     $CI->load->model('quotes/mdl_quote_tax_rates');
     $CI->load->model('custom_fields/mdl_custom_fields');
+    $CI->load->model('pictures/mdl_pictures');
     $CI->load->helper('country');
     $CI->load->helper('client');
 
@@ -234,6 +237,7 @@ function generate_quote_pdf($quote_id, $stream = true, $quote_template = null)
         if ($item->item_discount != '0.00') {
             $show_item_discounts = true;
         }
+        $item->image = $CI->mdl_pictures->htmlpicture($item->item_picture_id);
     }
 
     // Get all custom fields

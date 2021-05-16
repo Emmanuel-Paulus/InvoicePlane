@@ -121,13 +121,16 @@ class Mdl_Pictures extends Response_Model
      * @param $picture_id
      * @return string
      */
-    public function htmlpicture($picture_id = 0)    
+    public function htmlpicture($picture_id = 0, $forlist = false)    
     {
         if ($picture_id == 0) {
             $picture_id =$this->form_value('picture_id');
         }
         $picture= $this->get_picture($picture_id);
         if ($picture) {
+            if ($forlist) {
+                return '<img width="160" src="' . $this->get_url($picture) . '" style="position: fixed;top: 8.5em;left: 35.5em;">';
+            }           
             return '<img width="160" src="' . $this->get_url($picture) . '">';
         }
 
@@ -189,12 +192,9 @@ class Mdl_Pictures extends Response_Model
      * @param $picture_id
      * @param $field_id
      */
-    public function SelectBlock($picture_id, $field_id ="picture_id")
+    public function SelectInput($picture_id = false, $field_id ="picture_id")
     {
         $pictures = $this->get()->result();
-        echo "<div class='form-group'>\n";
-        echo "<input type='checkbox' id='image-picker-switch' class='image-picker-switch'/>\n";
-        echo "<label for='image-picker-switch'>" . trans('picture_picker') . "</label>\n";
         echo "<select id='" . $field_id . "' name='" . $field_id . "' class='image-picker'>\n";
         echo "<option>" . trans("select_picture") . "</option>\n";
         $picture_url = "";
@@ -209,6 +209,18 @@ class Mdl_Pictures extends Response_Model
             //echo "</optgroup>\n"; ** for further development of groups.
         }
         echo "</select>\n";
+    }
+
+    /**
+     * @param $picture_id
+     * @param $field_id
+     */
+    public function SelectBlock($picture_id, $field_id ="picture_id")
+    {
+        echo "<div class='form-group'>\n";
+        echo "<input type='checkbox' id='image-picker-switch' class='image-picker-switch'/>\n";
+        echo "<label for='image-picker-switch'>" . trans('picture_picker') . "</label>\n";
+        $this->SelectInput($picture_id, $field_id);
         echo "</div>\n";
     }
 

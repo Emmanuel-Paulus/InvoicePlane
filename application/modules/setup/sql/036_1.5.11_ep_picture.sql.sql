@@ -15,14 +15,14 @@ ALTER TABLE `ip_products`
         ON DELETE SET NULL;
 
 ALTER TABLE `ip_invoice_items` 
-     ADD COLUMN `picture_id` INT(11) DEFAULT NULL,
-     ADD FOREIGN KEY `fk_material_pictures`(`picture_id`) 
+     ADD COLUMN `item_picture_id` INT(11) DEFAULT NULL,
+     ADD FOREIGN KEY `fk_material_pictures`(`item_picture_id`) 
         REFERENCES `pictures`(`picture_id`) 
         ON DELETE SET NULL;
 
 ALTER TABLE `ip_quote_items`
-     ADD COLUMN `picture_id` INT(11) DEFAULT NULL,
-     ADD FOREIGN KEY `fk_quote_items_pictures`(`picture_id`) 
+     ADD COLUMN `item_picture_id` INT(11) DEFAULT NULL,
+     ADD FOREIGN KEY `fk_quote_items_pictures`(`item_picture_id`) 
         REFERENCES `pictures`(`picture_id`) 
         ON DELETE SET NULL;
 

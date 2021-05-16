@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table id="item_table" class="items table table-condensed table-bordered no-margin">
+    <table id="item_table" class="items table table-condensed table-bordered no-margin table-picture">
         <thead style="display: none">
         <tr>
             <th></th>
@@ -108,6 +108,10 @@
                             </option>
                         <?php } ?>
                     </select>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><?php _trans('picture'); ?></span>
+                    <?php $this->mdl_pictures->SelectInput(false, "item_picture_id"); ?>
                 </div>
             </td>
             <td class="td-amount td-vert-middle">
@@ -268,6 +272,11 @@
                                 </option>
                             <?php } ?>
                         </select>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><?php _trans('picture'); ?></span>
+                        <?php $this->mdl_pictures->SelectInput($item->item_picture_id, "item_picture_id"); ?>
+                        <?php echo $this->mdl_pictures->htmlpicture($item->item_picture_id, true);?>
                     </div>
                 </td>
                 <td class="td-amount td-vert-middle">

@@ -70,8 +70,8 @@ class Mdl_Quote_Items extends Response_Model
                 'field' => 'item_tax_rate_id',
                 'label' => trans('item_tax_rate'),
             ],
-            'picture_id' => array(
-                'field' => 'picture_id',
+            'item_picture_id' => array(
+                'field' => 'item_picture_id',
                 'label' => trans('picture'),
                 'rules' => 'numeric'
             ),            
