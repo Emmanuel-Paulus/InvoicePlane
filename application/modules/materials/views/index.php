@@ -25,6 +25,8 @@
                 <th><?php _trans('material_name'); ?></th>
                 <th><?php _trans('material_description'); ?></th>
                 <th><?php _trans('material_price'); ?></th>
+                <th><?php _trans('material_price_amount'); ?></th>
+                <th><?php _trans('material_price_descr'); ?></th>
                 <th><?php _trans('material_provider_name'); ?></th>
                 <th><?php _trans('options'); ?></th>
             </tr>
@@ -39,7 +41,13 @@
                     <td><?php _htmlsc($material->material_name); ?></td>
                     <td><?php echo nl2br(htmlsc($material->material_description)); ?></td>
                     <td class="amount"><?php echo format_currency($material->material_price); ?></td>
-                    <td><?php echo nl2br(htmlsc($material->material_provider_name)); ?></td>
+                    <td class="align-right"><?php _htmlsc($material->material_price_amount); ?></td>
+                    <td><?php _htmlsc($material->material_price_descr); ?></td>
+                    <td><?php echo nl2br(htmlsc($material->material_provider_name)); ?>
+                        <?php if ($material->material_url) { 
+                                echo '<a href="'.$material->material_url.'" target="_blank"><i class="fa fa-link fa-margin"></i> &nbsp;</a>'; 
+                        } ?>
+                    </td>
                     <td>
                         <div class="options btn-group">
                             <a class="btn btn-default btn-sm dropdown-toggle"

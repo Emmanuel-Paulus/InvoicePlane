@@ -43,12 +43,16 @@ class Mdl_Materials extends Response_Model
 
     public function by_product($match)
     {
-        $this->db->where('ip_products.family_id', $match);
+        $this->db->join('ip_product_materials', 'ip_product_materials.material_id = ip_materials.material_id');
+        $this->db->join('ip_products', 'ip_products.product_id = ip_product_materials.product_id');
+        $this->db->where('ip_products.product_name', $match);
     }
 
     public function get_by_product($product_id)
     {
-        return $this->where('ip_materials.product_id', $product_id)->get();
+        $this->db->join('ip_product_materials', 'ip_product_materials.material_id = ip_materials.material_id');
+        $this->db->join('ip_products', 'ip_products.product_id = ip_product_materials.product_id');
+        return $this->where('ip_products.product_id', $product_id)->get();
     }
 
     /**
@@ -72,15 +76,25 @@ class Mdl_Materials extends Response_Model
                 'label' => trans('material_price'),
                 'rules' => ''
             ),
+            'material_price_amount' => array(
+                'field' => 'material_price_amount',
+                'label' => trans('material_price'),
+                'rules' => ''
+            ),
+            'material_price_descr' => array(
+                'field' => 'material_price',
+                'label' => trans('material_price_descr'),
+                'rules' => ''
+            ),
             'material_provider_name' => array(
                 'field' => 'material_provider_name',
                 'label' => trans('material_provider_name'),
                 'rules' => ''
             ),
-            'product_id' => array(
-                'field' => 'product_id',
-                'label' => trans('product'),
-                'rules' => 'numeric'
+            'material_url' => array(
+                'field' => 'material_url',
+                'label' => trans('material_url'),
+                'rules' => ''
             ),
             'picture_id' => array(
                 'field' => 'picture_id',
@@ -98,7 +112,6 @@ class Mdl_Materials extends Response_Model
         $db_array = parent::db_array();
 
         $db_array['material_price'] = (empty($db_array['material_price']) ? null : standardize_amount($db_array['material_price']));
-        $db_array['product_id'] = (empty($db_array['product_id']) ? null : $db_array['product_id']);
         return $db_array;
     }
 }

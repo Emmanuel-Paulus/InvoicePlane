@@ -8,10 +8,13 @@
         // Creates the invoice
         $('.select-items-confirm').click(function () {
             var material_ids = [];
+            var material_ids_checked = false;
 
             $("input[name='material_ids[]']:checked").each(function () {
                 material_ids.push(parseInt($(this).val()));
+                material_ids_checked = true;
             });
+            if (material_ids_checked == false) { return false; }
 
             $.post("<?php echo site_url('materials/ajax/process_material_selections'); ?>", {
                 material_ids: material_ids
@@ -20,19 +23,19 @@
                 var items = JSON.parse(data);
 
                 for (var key in items) {
-                    // Set default tax rate id if empty
-                    if (!items[key].tax_rate_id) items[key].tax_rate_id = '<?php echo $default_item_tax_rate; ?>';
-
-                    if ($('#item_table tbody:last input[name=item_name]').val() !== '') {
-                        $('#new_row').clone().appendTo('#item_table').removeAttr('id').addClass('item').show();
+                    if ($('#materiallist tbody:last input[name=item_name]').val() !== '') {
+                        $('#new_row').clone().appendTo('#materiallist').removeAttr('id').addClass('material').show();
                     }
 
-                    var last_item_row = $('#item_table tbody:last');
-
-                    last_item_row.find('input[name=item_name]').val(items[key].material_name);
-                    last_item_row.find('textarea[name=item_description]').val(items[key].material_description);
-                    last_item_row.find('input[name=item_price]').val(items[key].material_price);
-                    last_item_row.find('input[name=item_material_id]').val(items[key].material_id);
+                    var last_item_row = $('#materiallist tbody:last');
+                    last_item_row.find('input[name=material_id]').val(items[key].material_id);
+                    last_item_row.find('input[name=material_name]').val(items[key].material_name);
+                    last_item_row.find('input[name=material_description]').val(items[key].material_description);
+                    last_item_row.find('input[name=material_price]').val(items[key].material_price_raw);
+                    last_item_row.find('input[name=material_price_amount]').val(items[key].material_price_amount);
+                    last_item_row.find('input[name=material_provider_name]').val(items[key].material_provider_name);
+                    last_item_row.find('input[name=prod_matr_amount]').val(1);
+                    last_item_row.find('input[name=prod_matr_amount]').trigger( "change" );
 
                     $('#modal-choose-items').modal('hide');
                 }
@@ -67,14 +70,8 @@
             materials_filter();
         });
 
-        // Filter on product dropdown change
-        $("#filter_product").change(function () {
-            materials_filter();
-        });
-
         // Filter materials
         function materials_filter() {
-            var filter_product = $('#filter_product').val();
             var filter_material = $('#filter_material').val();
             var material_table = $('#material-lookup-table');
 
@@ -82,10 +79,6 @@
 
             var lookup_url = "<?php echo site_url('materials/ajax/modal_material_lookups'); ?>/";
             lookup_url += Math.floor(Math.random() * 1000) + '/?';
-
-            if (filter_product) {
-                lookup_url += "&filter_product=" + filter_product;
-            }
 
             if (filter_material) {
                 lookup_url += "&filter_material=" + filter_material;
@@ -117,19 +110,6 @@
         <div class="modal-body">
 
             <div class="form-inline">
-                <div class="form-group filter-form">
-                    <select name="filter_product" id="filter_product" class="form-control simple-select">
-                        <option value=""><?php _trans('any_product'); ?></option>
-                        <?php foreach ($products as $product) { ?>
-                            <option value="<?php echo $product->product_id; ?>"
-                                <?php if (isset($filter_product) && $product->product_id == $filter_product) {
-                                    echo ' selected="selected"';
-                                } ?>>
-                                <?php _htmlsc($product->product_name); ?>
-                            </option>
-                        <?php } ?>
-                    </select>
-                </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="filter_material" id="filter_material"
                            placeholder="<?php _trans('material_name'); ?>"

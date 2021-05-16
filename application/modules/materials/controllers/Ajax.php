@@ -20,26 +20,18 @@ class Ajax extends Admin_Controller
     public function modal_material_lookups()
     {
         $filter_material = $this->input->get('filter_material');
-        $filter_product = $this->input->get('filter_product');
         $reset_table = $this->input->get('reset_table');
 
         $this->load->model('mdl_materials');
-        $this->load->model('products/mdl_products');
 
-        if (!empty($filter_product)) {
-            $this->mdl_materials->by_product($filter_product);
-        }
-        $materials = $this->mdl_products->get()->result();
-        $products = $this->mdl_families->get()->result();
+        $materials = $this->mdl_materials->get()->result();
 
         $data = array(
             'materials' => $materials,
-            'products' => $products,
             'filter_material' => $filter_material,
-            'filter_product' => $filter_product,
         );
 
-        if ($filter_material || $filter_product || $reset_table) {
+        if ($filter_material || $reset_table) {
             $this->layout->load_view('materials/partial_material_table_modal', $data);
         } else {
             $this->layout->load_view('materials/modal_material_lookups', $data);
@@ -49,14 +41,23 @@ class Ajax extends Admin_Controller
     public function process_material_selections()
     {
         $this->load->model('mdl_materials');
-
         $materials = $this->mdl_materials->where_in('material_id', $this->input->post('material_ids'))->get()->result();
 
         foreach ($materials as $material) {
+            $material->material_price_raw = $material->material_price;
             $material->material_price = format_amount($material->material_price);
         }
 
         echo json_encode($materials);
     }
 
+    public function format_price()
+    {
+        $price = $this->input->post('price');
+        $retjson = ["price" => ""];
+        if ($price) {
+            $retjson["price"] = format_amount($price);            
+        }
+        echo json_encode($retjson);
+    }
 }

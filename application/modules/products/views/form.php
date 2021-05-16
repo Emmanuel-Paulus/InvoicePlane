@@ -1,5 +1,5 @@
+<?php $product_id = $this->mdl_products->form_value('product_id'); ?>
 <form method="post">
-
     <input type="hidden" name="<?php echo $this->config->item('csrf_token_name'); ?>"
            value="<?php echo $this->security->get_csrf_hash() ?>">
 
@@ -184,7 +184,7 @@
                     </div>
                     <div class="panel-body">
                         <div id="filter_results">
-                            <?php $this->layout->load_view('materials/partial_material_list'); ?>
+                            <?php $this->layout->load_view('products/partial_material_list'); ?>
                         </div>
                     </div>
                 </div>

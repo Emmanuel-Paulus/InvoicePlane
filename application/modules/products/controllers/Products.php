@@ -64,15 +64,17 @@ class Products extends Admin_Controller
         $this->load->model('families/mdl_families');
         $this->load->model('units/mdl_units');
         $this->load->model('tax_rates/mdl_tax_rates');
+        $this->load->model('products/Mdl_product_materials');
         $this->load->model('materials/mdl_materials');
         $this->load->model('pictures/mdl_pictures');
-
+        
         $this->layout->set(
             array(
                 'families' => $this->mdl_families->get()->result(),
                 'units' => $this->mdl_units->get()->result(),
                 'tax_rates' => $this->mdl_tax_rates->get()->result(),
                 'materials' => $this->mdl_materials->get_by_product($id)->result(),
+                'product' => $this->mdl_products->get($id)->result()[0],
             )
         );
 

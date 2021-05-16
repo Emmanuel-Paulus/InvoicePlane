@@ -29,21 +29,6 @@
                     <div class="panel-body">
 
                         <div class="form-group">
-                            <label for="product_id">
-                                <?php _trans('product'); ?>
-                            </label>
-
-                            <select name="product_id" id="product_id" class="form-control simple-select">
-                                <option value="0"><?php _trans('select_product'); ?></option>
-                                <?php foreach ($products as $product) { ?>
-                                    <option value="<?php echo $product->product_id; ?>"
-                                        <?php check_select($this->mdl_materials->form_value('product_id'), $product->product_id) ?>
-                                    ><?php echo $product->product_name; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
                             <label for="material_name">
                                 <?php _trans('material_name'); ?>
                             </label>
@@ -72,6 +57,28 @@
                                 <span class="input-group-addon"><?php echo get_setting('currency_symbol'); ?></span>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="material_price_amount">
+                                <?php _trans('material_price_amount'); ?>
+                            </label>
+
+                            <div class="input-group has-feedback">
+                                <input type="text" name="material_price_amount" id="material_price_amount" class="form-control"
+                                       value="<?php echo $this->mdl_materials->form_value('material_price_amount'); ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="material_pric_descr">
+                                <?php _trans('material_price_descr'); ?>
+                            </label>
+
+                            <div class="input-group has-feedback">
+                                <input type="text" name="material_price_descr" id="material_price_descr" class="form-control"
+                                       value="<?php echo $this->mdl_materials->form_value('material_price_descr'); ?>">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,6 +100,14 @@
                                    value="<?php echo $this->mdl_materials->form_value('material_provider_name', true); ?>">
                         </div>
 
+                        <div class="form-group">
+                            <label for="material_url">
+                                <?php _trans('material_url'); ?>
+                            </label>
+
+                            <input type="text" name="material_url" id="material_url" class="form-control"
+                                   value="<?php echo $this->mdl_materials->form_value('material_url', true); ?>">
+                        </div>
 
                         <div class="form-group">
                             <label for="picture_id">
