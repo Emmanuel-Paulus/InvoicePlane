@@ -43,16 +43,30 @@ class Mdl_Materials extends Response_Model
 
     public function by_product($match)
     {
+        $this->db->from('ip_materials');
         $this->db->join('ip_product_materials', 'ip_product_materials.material_id = ip_materials.material_id');
         $this->db->join('ip_products', 'ip_products.product_id = ip_product_materials.product_id');
+        $this->db->join('ip_pictures', 'ip_materials.picture_id = ip_pictures.picture_id', 'left');
         $this->db->where('ip_products.product_name', $match);
+    }
+
+    public function by_product_id($id)
+    {
+        $this->db->from('ip_materials');
+        $this->db->join('ip_product_materials', 'ip_product_materials.material_id = ip_materials.material_id');
+        $this->db->join('ip_products', 'ip_products.product_id = ip_product_materials.product_id');
+        $this->db->join('ip_pictures', 'ip_materials.picture_id = ip_pictures.picture_id', 'left');
+        $this->db->where('ip_products.product_id', $id);
     }
 
     public function get_by_product($product_id)
     {
+        $this->db->from('ip_materials');
         $this->db->join('ip_product_materials', 'ip_product_materials.material_id = ip_materials.material_id');
         $this->db->join('ip_products', 'ip_products.product_id = ip_product_materials.product_id');
-        return $this->where('ip_products.product_id', $product_id)->get();
+        $this->db->join('ip_pictures', 'ip_materials.picture_id = ip_pictures.picture_id', 'left');
+        $this->db->where('ip_products.product_id', $product_id);
+        return $this->db->get();
     }
 
     /**
@@ -99,7 +113,7 @@ class Mdl_Materials extends Response_Model
             'picture_id' => array(
                 'field' => 'picture_id',
                 'label' => trans('picture'),
-                'rules' => 'numeric'
+                'rules' => ''
             ),            
         );
     }
@@ -114,4 +128,25 @@ class Mdl_Materials extends Response_Model
         $db_array['material_price'] = (empty($db_array['material_price']) ? null : standardize_amount($db_array['material_price']));
         return $db_array;
     }
+    
+    public function by_invoice($id = null)
+    {
+        $this->db->from('ip_materials');
+        $this->db->join('ip_product_materials', 'ip_product_materials.material_id = ip_materials.material_id');
+        $this->db->join('ip_products', 'ip_products.product_id = ip_product_materials.product_id');
+        $this->db->join('ip_invoice_items', 'ip_invoice_items.item_product_id = ip_products.product_id');
+        $this->db->join('ip_pictures', 'ip_materials.picture_id = ip_pictures.picture_id', 'left');
+        $this->db->where('ip_invoice_items.invoice_id', $id);
+    }
+
+    public function by_quote($id = null)
+    {
+        $this->db->from('ip_materials');
+        $this->db->join('ip_product_materials', 'ip_product_materials.material_id = ip_materials.material_id');
+        $this->db->join('ip_products', 'ip_products.product_id = ip_product_materials.product_id');
+        $this->db->join('ip_quote_items', 'ip_quote_items.item_product_id = ip_products.product_id');
+        $this->db->join('ip_pictures', 'ip_materials.picture_id = ip_pictures.picture_id', 'left');
+        $this->db->where('ip_quote_items.quote_id', $id);
+    }
+
 }

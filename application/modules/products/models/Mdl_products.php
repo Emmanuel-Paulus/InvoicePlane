@@ -103,7 +103,7 @@ class Mdl_Products extends Response_Model
             'picture_id' => array(
                 'field' => 'picture_id',
                 'label' => trans('picture'),
-                'rules' => 'numeric'
+                'rules' => ''
             ),            // Sumex
             'product_tariff' => array(
                 'field' => 'product_tariff',

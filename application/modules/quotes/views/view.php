@@ -15,6 +15,25 @@ $cv = $this->controller->view_data["custom_values"];
             $('#new_row').clone().appendTo('#item_table').removeAttr('id').addClass('item').show();
         });
 
+        $('.btn_materiallist').click(function () {
+            $('#modal-placeholder').load(
+                "<?php echo site_url('materials/ajax/quote/' . $quote_id); ?>/" +
+                Math.floor(Math.random() * 1000)
+            );
+        });
+
+        $('.btn_materiallist_pdf').click(function () {
+            var w = window.open("<?php echo site_url('materials/quote_pdf/' . $quote_id); ?>/" 
+                    + Math.floor(Math.random() * 1000), '_blank');
+            w.focus();
+        });
+
+        $('.btn_materiallist_csv').click(function () {
+            var w = window.open("<?php echo site_url('materials/quote_csv/' . $quote_id); ?>/" 
+                    + Math.floor(Math.random() * 1000), '_blank');
+            w.focus();
+        });
+
         $('#quote_change_client').click(function () {
             $('#modal-placeholder').load("<?php echo site_url('quotes/ajax/modal_change_client'); ?>", {
                 quote_id: <?php echo $quote_id; ?>,
@@ -25,6 +44,7 @@ $cv = $this->controller->view_data["custom_values"];
         <?php if (!$items) { ?>
         $('#new_row').clone().appendTo('#item_table').removeAttr('id').addClass('item').show();
         <?php } ?>
+
 
         $('#btn_save_quote').click(function () {
             var items = [];
@@ -267,7 +287,7 @@ $cv = $this->controller->view_data["custom_values"];
                                     <label for="quote_number">
                                         <?php _trans('quote'); ?> #
                                     </label>
-                                    <input type="text" id="quote_number" class="form-control input-sm"
+                                    <input type="text" id="quote_number" name="quote_number" class="form-control input-sm"
                                         <?php if ($quote->quote_number) : ?> value="<?php echo $quote->quote_number; ?>"
                                         <?php else : ?> placeholder="<?php _trans('not_set'); ?>"
                                         <?php endif; ?>>
@@ -329,7 +349,7 @@ $cv = $this->controller->view_data["custom_values"];
                                     <label for="quote_password">
                                         <?php _trans('quote_password'); ?>
                                     </label>
-                                    <input type="text" id="quote_password" class="form-control input-sm"
+                                    <input type="text" id="quote_password" name="quote_number" class="form-control input-sm"
                                            value="<?php _htmlsc($quote->quote_password) ?>">
                                 </div>
 
@@ -337,7 +357,7 @@ $cv = $this->controller->view_data["custom_values"];
                                     <div class="quote-properties">
                                         <label for="quote-guest-url"><?php _trans('guest_url'); ?></label>
                                         <div class="input-group">
-                                            <input type="text" id="quote-guest-url" readonly class="form-control"
+                                            <input type="text" id="quote-guest-url" name="quote_number" readonly class="form-control"
                                                    value="<?php echo site_url('guest/view/quote/' . $quote->quote_url_key); ?>">
                                             <span class="input-group-addon to-clipboard cursor-pointer"
                                                   data-clipboard-target="#quote-guest-url">

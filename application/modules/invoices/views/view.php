@@ -25,6 +25,25 @@ $cv = $this->controller->view_data["custom_values"];
             );
         });
 
+        $('.btn_materiallist').click(function () {
+            $('#modal-placeholder').load(
+                "<?php echo site_url('materials/ajax/invoice/' . $invoice_id); ?>/" +
+                Math.floor(Math.random() * 1000)
+            );
+        });
+
+        $('.btn_materiallist_pdf').click(function () {
+            var w = window.open("<?php echo site_url('materials/invoice_pdf/' . $invoice_id); ?>/" 
+                    + Math.floor(Math.random() * 1000), '_blank');
+            w.focus();
+        });
+
+        $('.btn_materiallist_csv').click(function () {
+            var w = window.open("<?php echo site_url('materials/invoice_csv/' . $invoice_id); ?>/" 
+                    + Math.floor(Math.random() * 1000), '_blank');
+            w.focus();
+        });
+
         $('.btn_add_row').click(function () {
             $('#new_row').clone().appendTo('#item_table').removeAttr('id').addClass('item').show();
         });

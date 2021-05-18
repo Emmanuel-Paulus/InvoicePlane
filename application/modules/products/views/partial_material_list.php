@@ -145,7 +145,7 @@
                 }
             });
             $.post("<?php echo site_url('products/ajax/save'); ?>", {
-                    product_id: <?php echo $product->product_id; ?>,
+                    product_id: <?php echo $this->mdl_products->form_value('product_id'); ?>,
                     product_sku: $('#product_sku').val(),
                     product_name: $('#product_name').val(),
                     product_description: $('#product_description').val(),
@@ -173,7 +173,7 @@
                             $('#' + key).parent().addClass('has-error');
                             all_resp_errors += resp_errors[key];
                         }
-                        $('#invoice_form').prepend('<div class="alert alert-danger">' + all_resp_errors + '</div>');
+                        $('#product_form').prepend('<div class="alert alert-danger">' + all_resp_errors + '</div>');
                     }
                 });
                 return false;
