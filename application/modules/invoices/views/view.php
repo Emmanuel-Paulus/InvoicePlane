@@ -146,6 +146,22 @@ $cv = $this->controller->view_data["custom_values"];
                 });
         });
 
+        $('#btn_generate_pdf').click(function () {
+            window.open('<?php echo site_url('invoices/generate_pdf/' . $invoice_id); ?>', '_blank');
+        });
+
+        $('#btn_generate_pdf_2').click(function () {
+            window.open('<?php echo site_url('invoices/generate_pdf/' . $invoice_id); ?>', '_blank');
+        });
+
+        $('#btn_generate_pdf_aanmaning').click(function () {
+            window.open('<?php echo site_url('invoices/generate_pdf/' . $invoice_id . '?aanmaning1=1'); ?>', '_blank');
+        });
+		
+        $('#btn_generate_pdf_ingebreke').click(function () {
+            window.open('<?php echo site_url('invoices/generate_pdf/' . $invoice_id . '?aanmaning1=2'); ?>', '_blank');
+        });
+
         <?php if ($invoice->is_read_only != 1): ?>
         var fixHelper = function (e, tr) {
             var $originals = tr.children();
@@ -308,6 +324,27 @@ if ($this->config->item('disable_read_only') == true) {
                 <i class="fa fa-read-only"></i> <?php _trans('read_only'); ?>
             </span>
         <?php } ?>
+        
+		<?php $is_verzonden  = ($invoice->is_read_only == 1 && $invoice->invoice_status_id > 1 && $invoice->invoice_status_id != 4); ?>
+        <?php if ($is_verzonden) { ?>
+          <a href="#" class="btn btn-default btn-sm"
+                    id="btn_generate_pdf_ingebreke" 
+                    data-invoice-id="<?php echo $invoice_id; ?>">
+            <i class="fa fa-print fa-margin"></i><?php echo trans('download_pdf'); ?> voor ingebrekestelling
+          </a>
+          <a href="#" class="btn btn-default btn-sm"
+                    id="btn_generate_pdf_aanmaning" 
+                    data-invoice-id="<?php echo $invoice_id; ?>">
+            <i class="fa fa-print fa-margin"></i><?php echo trans('download_pdf'); ?> voor aanmaning
+          </a>
+        <?php } else { ?>
+          <a href="#" class="btn btn-default btn-sm"
+                    id="btn_generate_pdf_2" 
+                    data-invoice-id="<?php echo $invoice_id; ?>">
+            <i class="fa fa-print fa-margin"></i><?php echo trans('download_pdf'); ?>
+          </a>
+        <?php } ?>
+        
     </div>
 
 </div>
