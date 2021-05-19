@@ -125,7 +125,7 @@
     $(function () {
         $('.btn_add_row').click(function () {
             $('#modal-placeholder').load(
-                "https://factuur.wreedwijs.be/index.php/materials/ajax/modal_material_lookups/" + Math.floor(Math.random() * 1000)
+                "<?php echo site_url('materials/ajax/modal_material_lookups/'); ?>" + Math.floor(Math.random() * 1000)
             );
         });
 
