@@ -8,6 +8,7 @@
 <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/core/img/favicon.png">
 
 <link rel="stylesheet" href="<?php _theme_asset('css/style.css'); ?>">
+<link rel="stylesheet" href="<?php _core_asset('css/image-picker.css'); ?>">
 <link rel="stylesheet" href="<?php _core_asset('css/custom.css'); ?>">
 
 <?php if (get_setting('monospace_amounts') == 1) { ?>
@@ -22,6 +23,7 @@
 <?php if (trans('cldr') != 'en') { ?>
     <script src="<?php _core_asset('js/locales/select2/' . trans('cldr') . '.js'); ?>"></script>
 <?php } ?>
+<script src="<?php _core_asset('js/image-picker.js'); ?>"></script>
 
 <script>
     Dropzone.autoDiscover = false;
@@ -99,5 +101,22 @@
             });
         });
 
+        $(document).on('change', '.image-picker-switch', function () {
+            if ($(this).is(":checked")) {
+                $(".image-picker_sel").hide();
+                $("select.image-picker").imagepicker({
+                    hide_select : false,
+                    show_label  : true            
+                });
+            } else {
+                $(".image-picker_sel").show();
+                $("select.image-picker").data('picker').destroy();
+            }
+        });
+        
+        $(document).on('change', '.image-picker', function () {
+            $("#"+$(this).attr('id')+'_sel').attr('src',$(this).find(':selected').data("img-src"));
+        });
+        $('.image-picker').change();
     });
 </script>

@@ -135,6 +135,7 @@ class Invoices extends Admin_Controller
         $this->load->helper("client");
         $this->load->model('units/mdl_units');
         $this->load->module('payments');
+        $this->load->model('pictures/mdl_pictures');
 
         $this->load->model('custom_values/mdl_custom_values');
         $this->load->model('custom_fields/mdl_invoice_custom');
