@@ -33,7 +33,8 @@ function pdf_create(
     $isInvoice = null,
     $is_guest = null,
     $zugferd_invoice = false,
-    $associated_files = null
+    $associated_files = null,
+    $pdf_settings = []
 ) {
     $CI = &get_instance();
 
@@ -46,7 +47,7 @@ function pdf_create(
         define('_MPDF_TTFONTDATAPATH', UPLOADS_TEMP_MPDF_FOLDER);
     }
 
-    $mpdf = new \Mpdf\Mpdf();
+    $mpdf = new \Mpdf\Mpdf($pdf_settings);
 
     // mPDF configuration
     $mpdf->useAdobeCJK = true;

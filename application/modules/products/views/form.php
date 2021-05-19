@@ -1,5 +1,5 @@
+<?php $product_id = $this->mdl_products->form_value('product_id'); ?>
 <form method="post">
-
     <input type="hidden" name="<?php echo $this->config->item('csrf_token_name'); ?>"
            value="<?php echo $this->security->get_csrf_hash() ?>">
 
@@ -37,9 +37,9 @@
                                 <option value="0"><?php _trans('select_family'); ?></option>
                                 <?php foreach ($families as $family) { ?>
                                     <option value="<?php echo $family->family_id; ?>"
-                                        <?php check_select($this->mdl_products->form_value('family_id'), $family->family_id) ?>
-                                    ><?php echo $family->family_name; ?></option>
-                                <?php } ?>
+                                    <?php check_select($this->mdl_products->form_value('family_id'), $family->family_id) ?>
+                                            ><?php echo $family->family_name; ?></option>
+                                        <?php } ?>
                             </select>
                         </div>
 
@@ -91,9 +91,9 @@
                                 <option value="0"><?php _trans('select_unit'); ?></option>
                                 <?php foreach ($units as $unit) { ?>
                                     <option value="<?php echo $unit->unit_id; ?>"
-                                        <?php check_select($this->mdl_products->form_value('unit_id'), $unit->unit_id); ?>
-                                    ><?php echo $unit->unit_name . '/' . $unit->unit_name_plrl; ?></option>
-                                <?php } ?>
+                                    <?php check_select($this->mdl_products->form_value('unit_id'), $unit->unit_id); ?>
+                                            ><?php echo $unit->unit_name . '/' . $unit->unit_name_plrl; ?></option>
+                                        <?php } ?>
                             </select>
                         </div>
 
@@ -106,29 +106,31 @@
                                 <option value="0"><?php _trans('none'); ?></option>
                                 <?php foreach ($tax_rates as $tax_rate) { ?>
                                     <option value="<?php echo $tax_rate->tax_rate_id; ?>"
-                                        <?php check_select($this->mdl_products->form_value('tax_rate_id'), $tax_rate->tax_rate_id); ?>>
-                                        <?php echo $tax_rate->tax_rate_name
-                                            . ' (' . format_amount($tax_rate->tax_rate_percent) . '%)'; ?>
+                                            <?php check_select($this->mdl_products->form_value('tax_rate_id'), $tax_rate->tax_rate_id); ?>>
+                                                <?php echo $tax_rate->tax_rate_name
+                                                . ' (' . format_amount($tax_rate->tax_rate_percent) . '%)';
+                                                ?>
                                     </option>
-                                <?php } ?>
+<?php } ?>
                             </select>
                         </div>
 
                     </div>
                 </div>
+
             </div>
 
             <div class="col-xs-12 col-md-6">
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <?php _trans('extra_information'); ?>
+<?php _trans('extra_information'); ?>
                     </div>
                     <div class="panel-body">
 
                         <div class="form-group">
                             <label for="provider_name">
-                                <?php _trans('provider_name'); ?>
+<?php _trans('provider_name'); ?>
                             </label>
 
                             <input type="text" name="provider_name" id="provider_name" class="form-control"
@@ -137,7 +139,7 @@
 
                         <div class="form-group">
                             <label for="purchase_price">
-                                <?php _trans('purchase_price'); ?>
+<?php _trans('purchase_price'); ?>
                             </label>
 
                             <div class="input-group has-feedback">
@@ -147,30 +149,79 @@
                             </div>
                         </div>
 
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <?php _trans('invoice_sumex'); ?>
-                    </div>
-                    <div class="panel-body">
-
                         <div class="form-group">
-                            <label for="product_tariff">
-                                <?php _trans('product_tariff'); ?>
+                            <label for="picture_id">
+                            <?php _trans('picture'); ?>
                             </label>
-
-                            <input type="text" name="product_tariff" id="product_tariff" class="form-control"
-                                   value="<?php echo $this->mdl_products->form_value('product_tariff', true); ?>">
+                            <?php $this->mdl_pictures->ImageBlock($this->mdl_products->form_value('picture_id')); ?>
+<?php $this->mdl_pictures->SelectBlock($this->mdl_products->form_value('picture_id')); ?>
                         </div>
 
                     </div>
                 </div>
 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+<?php _trans('invoice_sumex'); ?>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label for="product_tariff">
+<?php _trans('product_tariff'); ?>
+                            </label>
+
+                            <input type="text" name="product_tariff" id="product_tariff" class="form-control"
+                                   value="<?php echo $this->mdl_products->form_value('product_tariff', true); ?>">
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <div class="col-xs-12 col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+<?php _trans('materiallist'); ?>
+                        <a href="#" class="btn_materiallist btn btn-sm btn-default">
+                            <i class="fa fa-file-text"></i> <?php _trans('materiallist'); ?>
+                        </a>
+                        <a href="#" class="btn_materiallist_pdf btn btn-sm btn-default">
+                            <i class="fa fa-file-pdf-o"></i> <?php _trans('materiallist'); ?> PDF
+                        </a>
+                        <a href="#" class="btn_materiallist_csv btn btn-sm btn-default">
+                            <i class="fa fa-file-excel-o"></i> <?php _trans('materiallist'); ?> CSV
+                        </a>
+                    </div>
+                    <div class="panel-body">
+                        <div id="filter_results">
+<?php $this->layout->load_view('products/partial_material_list'); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>
 
 </form>
+<script>
+    $('.btn_materiallist').click(function () {
+        $('#modal-placeholder').load(
+                "<?php echo site_url('materials/ajax/product/' . $product_id); ?>/" +
+                Math.floor(Math.random() * 1000)
+                );
+    });
+
+    $('.btn_materiallist_pdf').click(function () {
+        var w = window.open("<?php echo site_url('materials/product_pdf/' . $product_id); ?>/"
+                + Math.floor(Math.random() * 1000), '_blank');
+        w.focus();
+    });
+
+    $('.btn_materiallist_csv').click(function () {
+        var w = window.open("<?php echo site_url('materials/product_csv/' . $product_id); ?>/"
+                + Math.floor(Math.random() * 1000), '_blank');
+        w.focus();
+    });
+</script>

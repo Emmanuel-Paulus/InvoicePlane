@@ -1,18 +1,17 @@
 <div id="headerbar">
-    <h1 class="headerbar-title"><?php _trans('products'); ?></h1>
+    <h1 class="headerbar-title"><?php _trans('materials'); ?></h1>
 
     <div class="headerbar-item pull-right">
-        <a class="btn btn-sm btn-primary" href="<?php echo site_url('products/form'); ?>">
+        <a class="btn btn-sm btn-primary" href="<?php echo site_url('materials/form'); ?>">
             <i class="fa fa-plus"></i> <?php _trans('new'); ?>
         </a>
     </div>
 
     <div class="headerbar-item pull-right">
-        <?php echo pager(site_url('products/index'), 'mdl_products'); ?>
+        <?php echo pager(site_url('materials/index'), 'mdl_materials'); ?>
     </div>
 
 </div>
-
 <div id="content" class="table-content">
 
     <?php $this->layout->load_view('layout/alerts'); ?>
@@ -22,35 +21,33 @@
 
             <thead>
             <tr>
-                <th><?php _trans('family'); ?></th>
-                <th><?php _trans('product_sku'); ?></th>
-                <th><?php _trans('product_name'); ?></th>
-                <th><?php _trans('product_description'); ?></th>
-                <th><?php _trans('product_price'); ?></th>
-                <th><?php _trans('product_unit'); ?></th>
-                <th><?php _trans('tax_rate'); ?></th>
-                <?php if (get_setting('sumex')) : ?>
-                    <th><?php _trans('product_tariff'); ?></th>
-                <?php endif; ?>
+                <th><?php _trans('id'); ?></th>
+                <th><?php _trans('material_name'); ?></th>
+                <th><?php _trans('material_description'); ?></th>
+                <th><?php _trans('material_price'); ?></th>
+                <th><?php _trans('material_price_amount'); ?></th>
+                <th><?php _trans('material_price_descr'); ?></th>
+                <th><?php _trans('material_provider_name'); ?></th>
                 <th><?php _trans('options'); ?></th>
             </tr>
             </thead>
 
             <tbody>
-            <?php foreach ($products as $product) { ?>
+            <?php foreach ($materials as $material) { ?>
                 <tr>
-                    <td><?php _htmlsc($product->family_name); ?>
-                        <?php echo $this->mdl_pictures->htmlpicture($product->picture_id);?>
+                    <td><?php _htmlsc($material->material_id); ?>
+                        <?php echo $this->mdl_pictures->htmlpicture($material->picture_id);?>
                     </td>
-                    <td><?php _htmlsc($product->product_sku); ?></td>
-                    <td><?php _htmlsc($product->product_name); ?></td>
-                    <td><?php echo nl2br(htmlsc($product->product_description)); ?></td>
-                    <td class="amount"><?php echo format_currency($product->product_price); ?></td>
-                    <td><?php _htmlsc($product->unit_name); ?></td>
-                    <td><?php echo ($product->tax_rate_id) ? htmlsc($product->tax_rate_name) : trans('none'); ?></td>
-                    <?php if (get_setting('sumex')) : ?>
-                        <td><?php _htmlsc($product->product_tariff); ?></td>
-                    <?php endif; ?>
+                    <td><?php _htmlsc($material->material_name); ?></td>
+                    <td><?php echo nl2br(htmlsc($material->material_description)); ?></td>
+                    <td class="amount"><?php echo format_currency($material->material_price); ?></td>
+                    <td class="align-right"><?php _htmlsc($material->material_price_amount); ?></td>
+                    <td><?php _htmlsc($material->material_price_descr); ?></td>
+                    <td><?php echo nl2br(htmlsc($material->material_provider_name)); ?>
+                        <?php if ($material->material_url) { 
+                                echo '<a href="'.$material->material_url.'" target="_blank"><i class="fa fa-link fa-margin"></i> &nbsp;</a>'; 
+                        } ?>
+                    </td>
                     <td>
                         <div class="options btn-group">
                             <a class="btn btn-default btn-sm dropdown-toggle"
@@ -59,12 +56,12 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="<?php echo site_url('products/form/' . $product->product_id); ?>">
+                                    <a href="<?php echo site_url('materials/form/' . $material->material_id); ?>">
                                         <i class="fa fa-edit fa-margin"></i> <?php _trans('edit'); ?>
                                     </a>
                                 </li>
                                 <li>
-                                    <form action="<?php echo site_url('products/delete/' . $product->product_id); ?>"
+                                    <form action="<?php echo site_url('materials/delete/' . $material->material_id); ?>"
                                           method="POST">
                                         <?php _csrf_field(); ?>
                                         <button type="submit" class="dropdown-button"

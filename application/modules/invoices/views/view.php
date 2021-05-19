@@ -25,6 +25,25 @@ $cv = $this->controller->view_data["custom_values"];
             );
         });
 
+        $('.btn_materiallist').click(function () {
+            $('#modal-placeholder').load(
+                "<?php echo site_url('materials/ajax/invoice/' . $invoice_id); ?>/" +
+                Math.floor(Math.random() * 1000)
+            );
+        });
+
+        $('.btn_materiallist_pdf').click(function () {
+            var w = window.open("<?php echo site_url('materials/invoice_pdf/' . $invoice_id); ?>/" 
+                    + Math.floor(Math.random() * 1000), '_blank');
+            w.focus();
+        });
+
+        $('.btn_materiallist_csv').click(function () {
+            var w = window.open("<?php echo site_url('materials/invoice_csv/' . $invoice_id); ?>/" 
+                    + Math.floor(Math.random() * 1000), '_blank');
+            w.focus();
+        });
+
         $('.btn_add_row').click(function () {
             $('#new_row').clone().appendTo('#item_table').removeAttr('id').addClass('item').show();
         });
@@ -125,6 +144,22 @@ $cv = $this->controller->view_data["custom_values"];
                         btn.removeClass('btn-link').addClass('btn-danger').prop('disabled', true);
                     }
                 });
+        });
+
+        $('#btn_generate_pdf').click(function () {
+            window.open('<?php echo site_url('invoices/generate_pdf/' . $invoice_id); ?>', '_blank');
+        });
+
+        $('#btn_generate_pdf_2').click(function () {
+            window.open('<?php echo site_url('invoices/generate_pdf/' . $invoice_id); ?>', '_blank');
+        });
+
+        $('#btn_generate_pdf_aanmaning').click(function () {
+            window.open('<?php echo site_url('invoices/generate_pdf/' . $invoice_id . '?aanmaning1=1'); ?>', '_blank');
+        });
+		
+        $('#btn_generate_pdf_ingebreke').click(function () {
+            window.open('<?php echo site_url('invoices/generate_pdf/' . $invoice_id . '?aanmaning1=2'); ?>', '_blank');
         });
 
         <?php if ($invoice->is_read_only != 1): ?>
@@ -289,6 +324,27 @@ if ($this->config->item('disable_read_only') == true) {
                 <i class="fa fa-read-only"></i> <?php _trans('read_only'); ?>
             </span>
         <?php } ?>
+        
+		<?php $is_verzonden  = ($invoice->is_read_only == 1 && $invoice->invoice_status_id > 1 && $invoice->invoice_status_id != 4); ?>
+        <?php if ($is_verzonden) { ?>
+          <a href="#" class="btn btn-default btn-sm"
+                    id="btn_generate_pdf_ingebreke" 
+                    data-invoice-id="<?php echo $invoice_id; ?>">
+            <i class="fa fa-print fa-margin"></i><?php echo trans('download_pdf'); ?> voor ingebrekestelling
+          </a>
+          <a href="#" class="btn btn-default btn-sm"
+                    id="btn_generate_pdf_aanmaning" 
+                    data-invoice-id="<?php echo $invoice_id; ?>">
+            <i class="fa fa-print fa-margin"></i><?php echo trans('download_pdf'); ?> voor aanmaning
+          </a>
+        <?php } else { ?>
+          <a href="#" class="btn btn-default btn-sm"
+                    id="btn_generate_pdf_2" 
+                    data-invoice-id="<?php echo $invoice_id; ?>">
+            <i class="fa fa-print fa-margin"></i><?php echo trans('download_pdf'); ?>
+          </a>
+        <?php } ?>
+        
     </div>
 
 </div>
