@@ -346,7 +346,9 @@
                 <a href="#" class="btn_add_task btn btn-sm btn-default">
                     <i class="fa fa-database"></i> <?php _trans('add_task'); ?>
                 </a>
-                <br/><br/>
+        </div>
+        <br/><br/>
+        <div class="btn-group">
                 <a href="#" class="btn_materiallist btn btn-sm btn-default">
                     <i class="fa fa-file-text"></i> <?php _trans('materiallist'); ?>
                 </a>

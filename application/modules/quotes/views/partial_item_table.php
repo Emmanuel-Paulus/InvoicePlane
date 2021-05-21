@@ -253,6 +253,18 @@
                 <i class="fa fa-file-excel-o"></i> <?php _trans('materiallist'); ?> CSV
             </a>
         </div>
+        <br/><br/>
+        <div class="btn-group">
+            <a href="#" class="btn_materiallist btn btn-sm btn-default">
+                <i class="fa fa-file-text"></i> <?php _trans('materiallist'); ?>
+            </a>
+            <a href="#" class="btn_materiallist_pdf btn btn-sm btn-default">
+                <i class="fa fa-file-pdf-o"></i> <?php _trans('materiallist'); ?> PDF
+            </a>
+            <a href="#" class="btn_materiallist_csv btn btn-sm btn-default">
+                <i class="fa fa-file-excel-o"></i> <?php _trans('materiallist'); ?> CSV
+            </a>
+        </div>
     </div>
 
     <div class="col-xs-12 visible-xs visible-sm"><br></div>
