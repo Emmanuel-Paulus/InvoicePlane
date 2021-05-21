@@ -724,13 +724,14 @@ $lang = array(
     
     // material
     'material_description'                          => 'Material description',
-    'material_name'                                 => 'Materiaal name',
+    'material_name'                                 => 'Material name',
     'material_price'                                => 'Price',
     'material_price_amount'                         => 'Nof Price',
     'material_price_descr'                          => 'Descr. Price',
     'materials'                                     => 'Material',
     'materials_form'                                => 'Material Form',
     'material_provider_name'                        => 'Provider Name',
+    'material_url'                                  => 'Url Material',
     'materiallist'                                  => 'Bill of Material',
     'create_material'                               => 'Create Material',
     'view_materials'                                => 'View Material',

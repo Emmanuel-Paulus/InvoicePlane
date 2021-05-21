@@ -242,7 +242,9 @@
                 <i class="fa fa-database"></i>
                 <?php _trans('add_product'); ?>
             </a>
-            <br/><br/>
+        </div>
+        <br/><br/>
+        <div class="btn-group">
             <a href="#" class="btn_materiallist btn btn-sm btn-default">
                 <i class="fa fa-file-text"></i> <?php _trans('materiallist'); ?>
             </a>

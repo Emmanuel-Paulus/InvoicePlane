@@ -10,3 +10,6 @@
 !invoiceplane/**/*
 !invoiceplane_blue
 !invoiceplane_blue/**/*
+
+!invoiceplane_cosmo_aerial
+!invoiceplane_cosmo_aerial/**/*
