@@ -1,3 +1,17 @@
+<style>
+    .sidebar .fa-users:after {content:"<?php _trans('clients'); ?>";}
+    .sidebar .fa-file:after {content:"<?php _trans('quotes'); ?>";}
+    .sidebar .fa-file-text:after {content:"<?php _trans('invoices'); ?>";}
+    .sidebar .fa-money:after {content:"<?php _trans('payments'); ?>";}
+    .sidebar .fa-database:after {content:"<?php _trans('products'); ?>";}
+    .sidebar .fa-adjust:after {content:"<?php _trans('materials'); ?>";}
+    .sidebar .fa-image:after {content:"<?php _trans('pictures'); ?>";}
+    .sidebar .fa-briefcase:after {content:"<?php _trans('incoms'); ?>";}
+    .sidebar .fa-industry:after {content:"<?php _trans('providers'); ?>";}
+    .sidebar .fa-check-square-o:after {content:"<?php _trans('tasks'); ?>";}
+    .sidebar .fa-cogs:after {content:"<?php _trans('system_settings'); ?>";}
+</style>
+
 <div class="sidebar hidden-xs">
     <ul>
         <li>
@@ -40,6 +54,18 @@
             <a href="<?php echo site_url('pictures/index'); ?>" title="<?php _trans('pictures'); ?>"
                class="tip" data-placement="right">
                 <i class="fa fa-image"></i>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo site_url('incoms/index'); ?>" title="<?php _trans('incoms'); ?>"
+               class="tip" data-placement="right">
+                <i class="fa fa-briefcase"></i>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo site_url('providers/index'); ?>" title="<?php _trans('providers'); ?>"
+               class="tip" data-placement="right">
+                <i class="fa fa-industry"></i>
             </a>
         </li>
         <?php if (get_setting('projects_enabled') == 1) : ?>

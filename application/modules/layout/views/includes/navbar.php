@@ -90,6 +90,20 @@
                     </ul>
                 </li>
 
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-caret-down"></i> &nbsp;
+                        <span class="hidden-md"><?php _trans('incoms'); ?></span>
+                        <i class="visible-md-inline fa fa-file"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="create-provider"><?php _trans('create_provider'); ?></a></li>
+                        <li><?php echo anchor('providers/index', trans('view_providers')); ?></li>
+                        <li><a href="#" class="create-incom"><?php _trans('create_incom'); ?></a></li>
+                        <li><?php echo anchor('incoms/index', trans('view_incoms')); ?></li>
+                    </ul>
+                </li>
+
                 <li class="dropdown <?php echo get_setting('projects_enabled') == 1 ?: 'hidden'; ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-caret-down"></i> &nbsp;

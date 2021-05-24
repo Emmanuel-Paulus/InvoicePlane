@@ -38,6 +38,21 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="family_id">
+                                <?php _trans('family'); ?>
+                            </label>
+
+                            <select name="family_id" id="family_id" class="form-control simple-select">
+                                <option value="0"><?php _trans('select_family'); ?></option>
+                                <?php foreach ($families as $family) { ?>
+                                    <option value="<?php echo $family->family_id; ?>"
+                                    <?php check_select($this->mdl_materials->form_value('family_id'), $family->family_id) ?>
+                                            ><?php echo $family->family_name; ?></option>
+                                        <?php } ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="material_description">
                                 <?php _trans('material_description'); ?>
                             </label>

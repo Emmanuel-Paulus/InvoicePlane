@@ -8,7 +8,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
  * @copyright	Copyright (c) 2012 - 2018 InvoicePlane.com
  * @license		https://invoiceplane.com/license.txt
  * @link		https://invoiceplane.com
- */
+ *
 
 /**
  * Class Ajax
@@ -20,18 +20,30 @@ class Ajax extends Admin_Controller
     public function modal_material_lookups()
     {
         $filter_material = $this->input->get('filter_material');
+        $filter_family = $this->input->get('filter_family');
         $reset_table = $this->input->get('reset_table');
 
         $this->load->model('mdl_materials');
+        $this->load->model('families/mdl_families');
+
+        if (!empty($filter_family)) {
+            $this->mdl_materials->by_family($filter_family);
+        }
+
+        if (!empty($filter_material)) {
+            $this->mdl_materials->by_material($filter_material);
+        }
 
         $materials = $this->mdl_materials->get()->result();
+        $families = $this->mdl_families->get()->result();
 
         $data = array(
             'materials' => $materials,
+            'families' => $families,
+            'filter_family' => $filter_family,
             'filter_material' => $filter_material,
         );
-
-        if ($filter_material || $reset_table) {
+        if ($filter_material || $filter_family || $reset_table) {
             $this->layout->load_view('materials/partial_material_table_modal', $data);
         } else {
             $this->layout->load_view('materials/modal_material_lookups', $data);

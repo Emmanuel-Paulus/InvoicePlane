@@ -25,11 +25,16 @@ class Mdl_Materials extends Response_Model
 
     public function default_order_by()
     {
-        $this->db->order_by('ip_materials.material_name');
+    }
+
+    public function default_order_by_use()
+    {
+        $this->db->order_by('ip_materials.material_name, ip_materials.material_id');
     }
 
     public function default_join()
     {
+        $this->db->join('ip_families', 'ip_families.family_id = ip_materials.family_id', 'left');
         $this->db->join('ip_pictures', 'ip_pictures.picture_id = ip_materials.picture_id', 'left');
     }
 
@@ -39,6 +44,7 @@ class Mdl_Materials extends Response_Model
         $this->db->like('ip_materials.material_name', $match);
         $this->db->or_like('ip_materials.material_description', $match);
         $this->db->group_end();
+        $this->default_order_by_use();
     }
 
     public function by_product($match)
@@ -48,6 +54,7 @@ class Mdl_Materials extends Response_Model
         $this->db->join('ip_products', 'ip_products.product_id = ip_product_materials.product_id');
         $this->db->join('ip_pictures', 'ip_materials.picture_id = ip_pictures.picture_id', 'left');
         $this->db->where('ip_products.product_name', $match);
+        $this->default_order_by_use();
     }
 
     public function by_product_id($id)
@@ -57,6 +64,7 @@ class Mdl_Materials extends Response_Model
         $this->db->join('ip_products', 'ip_products.product_id = ip_product_materials.product_id');
         $this->db->join('ip_pictures', 'ip_materials.picture_id = ip_pictures.picture_id', 'left');
         $this->db->where('ip_products.product_id', $id);
+        $this->default_order_by_use();
     }
 
     public function get_by_product($product_id)
@@ -66,7 +74,14 @@ class Mdl_Materials extends Response_Model
         $this->db->join('ip_products', 'ip_products.product_id = ip_product_materials.product_id');
         $this->db->join('ip_pictures', 'ip_materials.picture_id = ip_pictures.picture_id', 'left');
         $this->db->where('ip_products.product_id', $product_id);
+        $this->default_order_by_use();
         return $this->db->get();
+    }
+
+    public function by_family($match)
+    {
+        $this->db->where('ip_materials.family_id', $match);
+        $this->default_order_by_use();
     }
 
     /**
@@ -115,6 +130,11 @@ class Mdl_Materials extends Response_Model
                 'label' => trans('picture'),
                 'rules' => ''
             ),            
+            'family_id' => array(
+                'field' => 'family_id',
+                'label' => trans('family'),
+                'rules' => 'numeric'
+            ),
         );
     }
 
@@ -126,6 +146,7 @@ class Mdl_Materials extends Response_Model
         $db_array = parent::db_array();
 
         $db_array['material_price'] = (empty($db_array['material_price']) ? null : standardize_amount($db_array['material_price']));
+        $db_array['family_id'] = (empty($db_array['family_id']) ? null : $db_array['family_id']);
         return $db_array;
     }
     

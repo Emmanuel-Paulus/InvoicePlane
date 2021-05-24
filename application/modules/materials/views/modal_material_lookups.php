@@ -70,8 +70,14 @@
             materials_filter();
         });
 
+        // Filter on family dropdown change
+        $("#filter_family").change(function () {
+            materials_filter();
+        });
+
         // Filter materials
         function materials_filter() {
+            var filter_family = $('#filter_family').val();
             var filter_material = $('#filter_material').val();
             var material_table = $('#material-lookup-table');
 
@@ -82,6 +88,10 @@
 
             if (filter_material) {
                 lookup_url += "&filter_material=" + filter_material;
+            }
+
+            if (filter_family) {
+                lookup_url += "&filter_family=" + filter_family;
             }
 
             // Reload modal with settings
@@ -110,6 +120,19 @@
         <div class="modal-body">
 
             <div class="form-inline">
+                <div class="form-group filter-form">
+                    <select name="filter_family" id="filter_family" class="form-control simple-select">
+                        <option value=""><?php _trans('any_family'); ?></option>
+                        <?php foreach ($families as $family) { ?>
+                            <option value="<?php echo $family->family_id; ?>"
+                                <?php if (isset($filter_family) && $family->family_id == $filter_family) {
+                                    echo ' selected="selected"';
+                                } ?>>
+                                <?php _htmlsc($family->family_name); ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="filter_material" id="filter_material"
                            placeholder="<?php _trans('material_name'); ?>"

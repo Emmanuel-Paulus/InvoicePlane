@@ -24,6 +24,18 @@ function format_client($client)
 }
 
 /**
+ * @param object $provider
+ * @return string
+ */
+function format_provider($provider)
+{
+    if ($provider->provider_surname != "") {
+        return $provider->provider_name . " " . $provider->provider_surname;
+    }
+
+    return $provider->provider_name;
+}
+/**
  * @param string $gender
  * @return string
  */
