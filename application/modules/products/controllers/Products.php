@@ -30,11 +30,48 @@ class Products extends Admin_Controller
      */
     public function index($page = 0)
     {
+        $filter_product = $this->input->get('filter_product');
+        $filter_family = $this->input->get('filter_family');
+        $order = $this->input->get('order');
+        $reset_table = $this->input->get('reset_table');
+
+        $this->load->model('mdl_products');
         $this->load->model('pictures/mdl_pictures');
+        $this->load->model('families/mdl_families');
+        
+        if (!empty($filter_family) && empty($reset_table)) {
+            $this->mdl_products->filter_where('ip_products.family_id', $filter_family);
+        }
+
+        if (!empty($filter_product) && empty($reset_table)) {
+            $this->mdl_products->filter_group_start();
+            $this->mdl_products->filter_like('ip_products.product_name', $filter_product);
+            $this->mdl_products->filter_or_like('ip_products.product_description', $filter_product);
+            $this->mdl_products->filter_group_end();
+        }
+
+        if (empty($order)) {
+            $this->mdl_products->filter_order_by('ip_products.product_name, ip_families.family_name');
+        } else if ("family_name" == $order) {
+            $this->mdl_products->filter_order_by('ip_families.family_name, ip_products.product_name');
+        } else {
+            $this->mdl_products->filter_order_by("ip_products.".$order);
+        }
+
+        $families = $this->mdl_families->get()->result();
+
         $this->mdl_products->paginate(site_url('products/index'), $page);
         $products = $this->mdl_products->result();
 
-        $this->layout->set('products', $products);
+
+        $data = array(
+            'products' => $products,
+            'families' => $families,
+            'filter_family' => $filter_family,
+            'filter_product' => $filter_product,
+            'order' => $order
+        );
+        $this->layout->set($data);
         $this->layout->buffer('content', 'products/index');
         $this->layout->render();
     }

@@ -19,7 +19,7 @@
             <tr>
                 <td rowspan="2" class="td-icon"><i class="fa fa-arrows cursor-move"></i></td>
                 <td class="td-text">
-                    <input type="hidden" name="quote_id" value="<?php echo $quote_id; ?>">
+                    <input type="hidden" name="incom_id" value="<?php echo $incom_id; ?>">
                     <input type="hidden" name="item_id" value="">
                     <input type="hidden" name="item_product_id" value="">
 
@@ -116,7 +116,7 @@
                 <tr>
                     <td rowspan="2" class="td-icon"><i class="fa fa-arrows cursor-move"></i></td>
                     <td class="td-text">
-                        <input type="hidden" name="quote_id" value="<?php echo $quote_id; ?>">
+                        <input type="hidden" name="incom_id" value="<?php echo $incom_id; ?>">
                         <input type="hidden" name="item_id" value="<?php echo $item->item_id; ?>">
                         <input type="hidden" name="item_product_id" value="<?php echo $item->item_product_id; ?>">
 
@@ -263,30 +263,30 @@
         <table class="table table-bordered text-right">
             <tr>
                 <td style="width: 40%;"><?php _trans('subtotal'); ?></td>
-                <td style="width: 60%;" class="amount"><?php echo format_currency($quote->quote_item_subtotal); ?></td>
+                <td style="width: 60%;" class="amount"><?php echo format_currency($incom->incom_item_subtotal); ?></td>
             </tr>
             <tr>
                 <td><?php _trans('item_tax'); ?></td>
-                <td class="amount"><?php echo format_currency($quote->quote_item_tax_total); ?></td>
+                <td class="amount"><?php echo format_currency($incom->incom_item_tax_total); ?></td>
             </tr>
             <tr>
-                <td><?php _trans('quote_tax'); ?></td>
+                <td><?php _trans('incom_tax'); ?></td>
                 <td>
-                    <?php if ($quote_tax_rates) {
-                        foreach ($quote_tax_rates as $index => $quote_tax_rate) {
+                    <?php if ($incom_tax_rates) {
+                        foreach ($incom_tax_rates as $index => $incom_tax_rate) {
                             ?>
                             <form method="POST" class="form-inline"
-                                  action="<?php echo site_url('quotes/delete_quote_tax/' . $quote->quote_id . '/' . $quote_tax_rate->quote_tax_rate_id) ?>">
+                                  action="<?php echo site_url('incoms/delete_incom_tax/' . $incom->incom_id . '/' . $incom_tax_rate->incom_tax_rate_id) ?>">
         <?php _csrf_field(); ?>
                                 <button type="submit" class="btn btn-xs btn-link"
                                         onclick="return confirm('<?php _trans('delete_tax_warning'); ?>');">
                                     <i class="fa fa-trash-o"></i>
                                 </button>
                                 <span class="text-muted">
-        <?php echo htmlsc($quote_tax_rate->quote_tax_rate_name) . ' ' . format_amount($quote_tax_rate->quote_tax_rate_percent) . '%' ?>
+        <?php echo htmlsc($incom_tax_rate->incom_tax_rate_name) . ' ' . format_amount($incom_tax_rate->incom_tax_rate_percent) . '%' ?>
                                 </span>
                                 <span class="amount">
-        <?php echo format_currency($quote_tax_rate->quote_tax_rate_amount); ?>
+        <?php echo format_currency($incom_tax_rate->incom_tax_rate_amount); ?>
                                 </span>
                             </form>
                         <?php
@@ -302,9 +302,9 @@
                 <td class="clearfix">
                     <div class="discount-field">
                         <div class="input-group input-group-sm">
-                            <input id="quote_discount_amount" name="quote_discount_amount"
+                            <input id="incom_discount_amount" name="incom_discount_amount"
                                    class="discount-option form-control input-sm amount"
-                                   value="<?php echo format_amount($quote->quote_discount_amount != 0 ? $quote->quote_discount_amount : ''); ?>">
+                                   value="<?php echo format_amount($incom->incom_discount_amount != 0 ? $incom->incom_discount_amount : ''); ?>">
 
                             <div
                                 class="input-group-addon"><?php echo get_setting('currency_symbol'); ?></div>
@@ -312,8 +312,8 @@
                     </div>
                     <div class="discount-field">
                         <div class="input-group input-group-sm">
-                            <input id="quote_discount_percent" name="quote_discount_percent"
-                                   value="<?php echo format_amount($quote->quote_discount_percent != 0 ? $quote->quote_discount_percent : ''); ?>"
+                            <input id="incom_discount_percent" name="incom_discount_percent"
+                                   value="<?php echo format_amount($incom->incom_discount_percent != 0 ? $incom->incom_discount_percent : ''); ?>"
                                    class="discount-option form-control input-sm amount">
                             <div class="input-group-addon">&percnt;</div>
                         </div>
@@ -322,7 +322,7 @@
             </tr>
             <tr>
                 <td><b><?php _trans('total'); ?></b></td>
-                <td class="amount"><b><?php echo format_currency($quote->quote_total); ?></b></td>
+                <td class="amount"><b><?php echo format_currency($incom->incom_total); ?></b></td>
             </tr>
         </table>
     </div>

@@ -30,11 +30,46 @@ class Materials extends Admin_Controller
      */
     public function index($page = 0)
     {
+        $filter_material = $this->input->get('filter_material');
+        $filter_family = $this->input->get('filter_family');
+        $order = $this->input->get('order');
+        $reset_table = $this->input->get('reset_table');
+
+        $this->load->model('mdl_materials');
         $this->load->model('pictures/mdl_pictures');
+        $this->load->model('families/mdl_families');
+        
+        if (!empty($filter_family) && empty($reset_table)) {
+            $this->mdl_materials->filter_where('ip_materials.family_id', $filter_family);
+        }
+
+        if (!empty($filter_material) && empty($reset_table)) {
+            $this->mdl_materials->filter_group_start();
+            $this->mdl_materials->filter_like('ip_materials.material_name', $filter_material);
+            $this->mdl_materials->filter_or_like('ip_materials.material_description', $filter_material);
+            $this->mdl_materials->filter_group_end();
+        }
+
+        if (empty($order)) {
+            $this->mdl_materials->filter_order_by('ip_materials.material_name, ip_families.family_name');
+        } else if ("family_name" == $order) {
+            $this->mdl_materials->filter_order_by('ip_families.family_name, ip_materials.material_name');
+        } else {
+            $this->mdl_materials->filter_order_by("ip_materials.".$order);
+        }
+
+        $families = $this->mdl_families->get()->result();
         $this->mdl_materials->paginate(site_url('materials/index'), $page);
         $materials = $this->mdl_materials->result();
 
-        $this->layout->set('materials', $materials);
+        $data = array(
+            'materials' => $materials,
+            'families' => $families,
+            'filter_family' => $filter_family,
+            'filter_material' => $filter_material,
+            'order' => $order
+        );
+        $this->layout->set($data);
         $this->layout->buffer('content', 'materials/index');
         $this->layout->render();
     }
@@ -61,10 +96,12 @@ class Materials extends Admin_Controller
             }
         }
 
+        $this->load->model('families/mdl_families');
         $this->load->model('pictures/mdl_pictures');
 
         $this->layout->set(
             array(
+                'families' => $this->mdl_families->get()->result(),
             )
         );
 

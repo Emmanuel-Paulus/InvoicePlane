@@ -54,6 +54,10 @@
             $('#modal-placeholder').load("<?php echo site_url('quotes/ajax/modal_create_quote'); ?>");
         });
 
+        $(document).on('click', '.create-incom', function () {
+            $('#modal-placeholder').load("<?php echo site_url('incoms/ajax/modal_create_incom'); ?>");
+        });
+
         $(document).on('click', '#btn_quote_to_invoice', function () {
             var quote_id = $(this).data('quote-id');
             $('#modal-placeholder').load("<?php echo site_url('quotes/ajax/modal_quote_to_invoice'); ?>/" + quote_id);
@@ -86,6 +90,11 @@
         $(document).on('click', '.client-create-quote', function () {
             var client_id = $(this).data('client-id');
             $('#modal-placeholder').load("<?php echo site_url('quotes/ajax/modal_create_quote'); ?>", {client_id: client_id});
+        });
+
+        $(document).on('click', '.provider-create-incom', function () {
+            var provider_id = $(this).data('provider-id');
+            $('#modal-placeholder').load("<?php echo site_url('incoms/ajax/modal_create_incom'); ?>", {provider_id: provider_id});
         });
 
         $(document).on('click', '.invoice-add-payment', function () {

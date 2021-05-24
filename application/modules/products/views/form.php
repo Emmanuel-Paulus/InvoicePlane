@@ -29,6 +29,15 @@
                     <div class="panel-body">
 
                         <div class="form-group">
+                            <label for="product_name">
+                                <?php _trans('product_name'); ?>
+                            </label>
+
+                            <input type="text" name="product_name" id="product_name" class="form-control" required
+                                   value="<?php echo $this->mdl_products->form_value('product_name', true); ?>">
+                        </div>
+
+                        <div class="form-group">
                             <label for="family_id">
                                 <?php _trans('family'); ?>
                             </label>
@@ -50,15 +59,6 @@
 
                             <input type="text" name="product_sku" id="product_sku" class="form-control"
                                    value="<?php echo $this->mdl_products->form_value('product_sku', true); ?>">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="product_name">
-                                <?php _trans('product_name'); ?>
-                            </label>
-
-                            <input type="text" name="product_name" id="product_name" class="form-control" required
-                                   value="<?php echo $this->mdl_products->form_value('product_name', true); ?>">
                         </div>
 
                         <div class="form-group">
@@ -147,6 +147,15 @@
                                        value="<?php echo format_amount($this->mdl_products->form_value('purchase_price')); ?>">
                                 <span class="input-group-addon"><?php echo get_setting('currency_symbol'); ?></span>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product_url">
+                                <?php _trans('product_url'); ?>
+                            </label>
+
+                            <input type="text" name="product_url" id="product_url" class="form-control"
+                                   value="<?php echo $this->mdl_products->form_value('product_url', true); ?>">
                         </div>
 
                         <div class="form-group">

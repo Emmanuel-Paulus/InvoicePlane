@@ -25,7 +25,11 @@ class Mdl_Products extends Response_Model
 
     public function default_order_by()
     {
-        $this->db->order_by('ip_families.family_name, ip_products.product_name');
+    }
+
+    public function default_order_by_use()
+    {
+        $this->db->order_by('ip_products.product_name, ip_families.product_id');
     }
 
     public function default_join()
@@ -42,11 +46,13 @@ class Mdl_Products extends Response_Model
         $this->db->or_like('ip_products.product_name', $match);
         $this->db->or_like('ip_products.product_description', $match);
         $this->db->group_end();
+        $this->default_order_by_use();
     }
 
     public function by_family($match)
     {
         $this->db->where('ip_products.family_id', $match);
+        $this->default_order_by_use();
     }
 
     /**
@@ -73,7 +79,7 @@ class Mdl_Products extends Response_Model
             'product_price' => array(
                 'field' => 'product_price',
                 'label' => trans('product_price'),
-                'rules' => 'required'
+                'rules' => ''
             ),
             'purchase_price' => array(
                 'field' => 'purchase_price',
@@ -108,6 +114,11 @@ class Mdl_Products extends Response_Model
             'product_tariff' => array(
                 'field' => 'product_tariff',
                 'label' => trans('product_tariff'),
+                'rules' => ''
+            ),
+            'product_url' => array(
+                'field' => 'product_url',
+                'label' => trans('product_url'),
                 'rules' => ''
             ),
         );
