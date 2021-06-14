@@ -78,6 +78,10 @@ class Mdl_Quote_Items extends Response_Model
             'item_product_id' => [
                 'field' => 'item_product_id',
                 'label' => trans('original_product'),
+            ],            
+            'item_material_id' => [
+                'field' => 'item_material_id',
+                'label' => trans('original_material'),
             ],
         ];
     }

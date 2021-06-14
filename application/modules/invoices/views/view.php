@@ -18,6 +18,12 @@ $cv = $this->controller->view_data["custom_values"];
             );
         });
 
+        $('.btn_add_material').click(function () {
+            $('#modal-placeholder').load(
+                "<?php echo site_url('materials/ajax/modal_material_lookups_direct'); ?>/" + Math.floor(Math.random() * 1000)
+            );
+        });
+
         $('.btn_add_task').click(function () {
             $('#modal-placeholder').load(
                 "<?php echo site_url('tasks/ajax/modal_task_lookups/' . $invoice_id); ?>/" +

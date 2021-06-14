@@ -41,6 +41,7 @@ class Ajax extends Admin_Controller
                     $item->item_price = ($item->item_price ? standardize_amount($item->item_price) : floatval(0));
                     $item->item_discount_amount = ($item->item_discount_amount) ? standardize_amount($item->item_discount_amount) : null;
                     $item->item_product_id = ($item->item_product_id ? $item->item_product_id : null);
+                    $item->item_material_id = ($item->item_material_id ? $item->item_material_id : null);
                     if (property_exists($item, 'item_date')) {
                         $item->item_date = ($item->item_date ? date_to_mysql($item->item_date) : null);
                     }

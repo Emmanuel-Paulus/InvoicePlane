@@ -39,6 +39,7 @@ class Mdl_Items extends Response_Model
         $this->db->join('ip_invoice_item_amounts', 'ip_invoice_item_amounts.item_id = ip_invoice_items.item_id', 'left');
         $this->db->join('ip_tax_rates AS item_tax_rates', 'item_tax_rates.tax_rate_id = ip_invoice_items.item_tax_rate_id', 'left');
         $this->db->join('ip_products', 'ip_products.product_id = ip_invoice_items.item_product_id', 'left');
+        $this->db->join('ip_materials', 'ip_materials.material_id = ip_invoice_items.item_material_id', 'left');
     }
 
     /**
@@ -88,6 +89,10 @@ class Mdl_Items extends Response_Model
             'item_product_id' => [
                 'field' => 'item_product_id',
                 'label' => trans('original_product'),
+            ],
+            'item_material_id' => [
+                'field' => 'item_material_id',
+                'label' => trans('original_material'),
             ],
             'item_date' => [
                 'field' => 'item_date',

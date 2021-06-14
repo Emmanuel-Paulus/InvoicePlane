@@ -22,6 +22,7 @@
                     <input type="hidden" name="quote_id" value="<?php echo $quote_id; ?>">
                     <input type="hidden" name="item_id" value="">
                     <input type="hidden" name="item_product_id" value="">
+                    <input type="hidden" name="item_material_id" value="">
 
                     <div class="input-group">
                         <span class="input-group-addon"><?php _trans('item'); ?></span>
@@ -119,6 +120,7 @@
                         <input type="hidden" name="quote_id" value="<?php echo $quote_id; ?>">
                         <input type="hidden" name="item_id" value="<?php echo $item->item_id; ?>">
                         <input type="hidden" name="item_product_id" value="<?php echo $item->item_product_id; ?>">
+                        <input type="hidden" name="item_material_id" value="<?php echo $item->item_material_id; ?>">
 
                         <div class="input-group">
                             <span class="input-group-addon"><?php _trans('item'); ?></span>
@@ -241,6 +243,10 @@
             <a href="#" class="btn_add_product btn btn-sm btn-default">
                 <i class="fa fa-database"></i>
                 <?php _trans('add_product'); ?>
+            </a>
+            <a href="#" class="btn_add_material btn btn-sm btn-default">
+                <i class="fa fa-database"></i>
+                <?php _trans('add_material'); ?>
             </a>
         </div>
         <br/><br/>

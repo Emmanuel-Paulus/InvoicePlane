@@ -250,3 +250,17 @@ ALTER TABLE `ip_materials`
 ALTER TABLE `ip_materials` 
      ADD FOREIGN KEY `fk_material_family_id`(`family_id`) 
         REFERENCES `ip_family`(`family_id`);  
+
+
+ALTER TABLE `ip_invoice_items` 
+     ADD COLUMN `item_material_id` INT(11) DEFAULT NULL,
+     ADD FOREIGN KEY `fk_invoice_items_materials`(`item_material_id`) 
+        REFERENCES `materials`(`material_id`) 
+        ON DELETE SET NULL;
+
+ALTER TABLE `ip_quote_items`
+     ADD COLUMN `item_material_id` INT(11) DEFAULT NULL,
+     ADD FOREIGN KEY `fk_quote_items_materials`(`item_material_id`) 
+        REFERENCES `materials`(`material_id`) 
+        ON DELETE SET NULL;
+
