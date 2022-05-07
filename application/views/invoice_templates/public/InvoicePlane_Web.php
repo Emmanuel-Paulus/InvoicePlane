@@ -53,7 +53,7 @@
             <?php
             $logo = invoice_logo();
             if ($logo) {
-                echo $logo . '<br><br>';
+                echo str_replace('<img','<img style="width: 10em;"',$logo) . '<br><br>';
             }
             ?>
 
@@ -84,7 +84,9 @@
                         } ?>
                         <?php if ($invoice->user_phone) { ?><?php echo trans('phone_abbr'); ?>: <?php echo htmlsc($invoice->user_phone); ?>
                             <br><?php } ?>
-                        <?php if ($invoice->user_fax) { ?><?php echo trans('fax_abbr'); ?>: <?php echo htmlsc($invoice->user_fax); ?><?php } ?>
+                        <?php if ($invoice->user_iban) {
+                            echo 'IBAN: '. htmlsc($invoice->user_iban) . '<br>';
+                        } ?>
                     </p>
 
                 </div>
@@ -113,6 +115,10 @@
                         <?php if ($invoice->client_zip) {
                             echo htmlsc($invoice->client_zip) . '<br>';
                         } ?>
+                        <?php if ($invoice->client_phone) {
+                            echo trans('phone_abbr') . ': ' . htmlsc($invoice->client_phone); ?>
+                            <br>
+                        <?php } ?>
                         <?php if ($invoice->client_phone) {
                             echo trans('phone_abbr') . ': ' . htmlsc($invoice->client_phone); ?>
                             <br>
