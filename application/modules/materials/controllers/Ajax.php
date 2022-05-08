@@ -50,6 +50,41 @@ class Ajax extends Admin_Controller
         }
     }
 
+    public function modal_material_lookups_direct()
+    {
+        $filter_material = $this->input->get('filter_material');
+        $filter_family = $this->input->get('filter_family');
+        $reset_table = $this->input->get('reset_table');
+
+        $this->load->model('mdl_materials');
+        $this->load->model('families/mdl_families');
+
+        if (!empty($filter_family)) {
+            $this->mdl_materials->by_family($filter_family);
+        }
+
+        if (!empty($filter_material)) {
+            $this->mdl_materials->by_material($filter_material);
+        }
+
+        $materials = $this->mdl_materials->get()->result();
+        $families = $this->mdl_families->get()->result();
+        $default_item_tax_rate = get_setting('default_item_tax_rate');
+        $default_item_tax_rate = $default_item_tax_rate !== '' ?: 0;
+        $data = array(
+            'materials' => $materials,
+            'families' => $families,
+            'filter_family' => $filter_family,
+            'filter_material' => $filter_material,
+            'default_item_tax_rate' => $default_item_tax_rate,
+        );
+        if ($filter_material || $filter_family || $reset_table) {
+            $this->layout->load_view('materials/partial_material_table_modal', $data);
+        } else {
+            $this->layout->load_view('materials/modal_material_lookups_direct', $data);
+        }
+    }
+
     public function process_material_selections()
     {
         $this->load->model('mdl_materials');

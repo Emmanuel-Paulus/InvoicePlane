@@ -37,6 +37,7 @@ class Ajax extends Admin_Controller
                     $item->item_price = ($item->item_price ? standardize_amount($item->item_price) : floatval(0));
                     $item->item_discount_amount = ($item->item_discount_amount) ? standardize_amount($item->item_discount_amount) : null;
                     $item->item_product_id = ($item->item_product_id ? $item->item_product_id : null);
+                    $item->item_material_id = ($item->item_material_id ? $item->item_material_id : null);
                     $item->item_product_unit_id = ($item->item_product_unit_id ? $item->item_product_unit_id : null);
                     $item->item_product_unit = $this->mdl_units->get_name($item->item_product_unit_id, $item->item_quantity);
 
@@ -346,6 +347,7 @@ class Ajax extends Admin_Controller
                     'invoice_id' => $invoice_id,
                     'item_tax_rate_id' => $quote_item->item_tax_rate_id,
                     'item_product_id' => $quote_item->item_product_id,
+                    'item_material_id' => $quote_item->item_material_id,
                     'item_name' => $quote_item->item_name,
                     'item_description' => $quote_item->item_description,
                     'item_quantity' => $quote_item->item_quantity,

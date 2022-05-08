@@ -22,7 +22,7 @@
                     <input type="hidden" name="incom_id" value="<?php echo $incom_id; ?>">
                     <input type="hidden" name="item_id" value="">
                     <input type="hidden" name="item_product_id" value="">
-
+                    <input type="hidden" name="item_material_id" value="">
                     <div class="input-group">
                         <span class="input-group-addon"><?php _trans('item'); ?></span>
                         <input type="text" name="item_name" class="input-sm form-control" value="">
@@ -119,7 +119,7 @@
                         <input type="hidden" name="incom_id" value="<?php echo $incom_id; ?>">
                         <input type="hidden" name="item_id" value="<?php echo $item->item_id; ?>">
                         <input type="hidden" name="item_product_id" value="<?php echo $item->item_product_id; ?>">
-
+                        <input type="hidden" name="item_material_id" value="<?php echo $item->item_material_id; ?>">
                         <div class="input-group">
                             <span class="input-group-addon"><?php _trans('item'); ?></span>
                             <input type="text" name="item_name" class="input-sm form-control"

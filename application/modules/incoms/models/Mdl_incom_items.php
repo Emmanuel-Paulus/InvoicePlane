@@ -74,10 +74,14 @@ class Mdl_Incom_Items extends Response_Model
                 'field' => 'item_picture_id',
                 'label' => trans('picture'),
                 'rules' => 'numeric'
-            ),            
+            ),
             'item_product_id' => [
                 'field' => 'item_product_id',
                 'label' => trans('original_product'),
+            ],
+            'item_material_id' => [
+                'field' => 'item_material_id',
+                'label' => trans('original_material'),
             ],
         ];
     }

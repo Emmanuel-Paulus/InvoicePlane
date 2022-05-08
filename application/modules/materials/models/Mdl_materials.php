@@ -159,6 +159,14 @@ class Mdl_Materials extends Response_Model
         $this->db->join('ip_pictures', 'ip_materials.picture_id = ip_pictures.picture_id', 'left');
         $this->db->where('ip_invoice_items.invoice_id', $id);
     }
+   
+    public function by_invoice_direct($id = null)
+    {
+        $this->db->from('ip_materials');
+        $this->db->join('ip_invoice_items', 'ip_invoice_items.item_material_id = ip_materials.material_id');
+        $this->db->join('ip_pictures', 'ip_materials.picture_id = ip_pictures.picture_id', 'left');
+        $this->db->where('ip_invoice_items.invoice_id', $id);
+    }
 
     public function by_quote($id = null)
     {
@@ -166,6 +174,14 @@ class Mdl_Materials extends Response_Model
         $this->db->join('ip_product_materials', 'ip_product_materials.material_id = ip_materials.material_id');
         $this->db->join('ip_products', 'ip_products.product_id = ip_product_materials.product_id');
         $this->db->join('ip_quote_items', 'ip_quote_items.item_product_id = ip_products.product_id');
+        $this->db->join('ip_pictures', 'ip_materials.picture_id = ip_pictures.picture_id', 'left');
+        $this->db->where('ip_quote_items.quote_id', $id);
+    }
+
+    public function by_quote_direct($id = null)
+    {
+        $this->db->from('ip_materials');
+        $this->db->join('ip_quote_items', 'ip_quote_items.item_material_id = ip_materials.material_id');
         $this->db->join('ip_pictures', 'ip_materials.picture_id = ip_pictures.picture_id', 'left');
         $this->db->where('ip_quote_items.quote_id', $id);
     }

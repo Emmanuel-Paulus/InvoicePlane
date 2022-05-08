@@ -126,7 +126,7 @@ class Mdl_Settings extends CI_Model
             }
 
             // Get the theme info file
-            $theme = str_replace('/', '', $theme);
+            $theme = str_replace('\\', '', str_replace('/', '', $theme));
             $info_path = THEME_FOLDER . $theme . '/';
             $info_file = $theme . '.theme';
 

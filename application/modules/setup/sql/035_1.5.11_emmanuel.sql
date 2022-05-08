@@ -32,35 +32,35 @@ CREATE TABLE IF NOT EXISTS `ip_product_materials` (
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
 
-ALTER TABLE `ip_products` 
+ALTER TABLE `ip_products`
      ADD COLUMN `picture_id` INT(11) DEFAULT NULL,
-     ADD FOREIGN KEY `fk_products_pictures`(`picture_id`) 
-        REFERENCES `pictures`(`picture_id`) 
+     ADD FOREIGN KEY `fk_products_pictures`(`picture_id`)
+        REFERENCES `pictures`(`picture_id`)
         ON DELETE SET NULL;
 
-ALTER TABLE `ip_invoice_items` 
+ALTER TABLE `ip_invoice_items`
      ADD COLUMN `item_picture_id` INT(11) DEFAULT NULL,
-     ADD FOREIGN KEY `fk_material_pictures`(`item_picture_id`) 
-        REFERENCES `pictures`(`picture_id`) 
+     ADD FOREIGN KEY `fk_material_pictures`(`item_picture_id`)
+        REFERENCES `pictures`(`picture_id`)
         ON DELETE SET NULL;
 
 ALTER TABLE `ip_quote_items`
      ADD COLUMN `item_picture_id` INT(11) DEFAULT NULL,
-     ADD FOREIGN KEY `fk_quote_items_pictures`(`item_picture_id`) 
-        REFERENCES `pictures`(`picture_id`) 
+     ADD FOREIGN KEY `fk_quote_items_pictures`(`item_picture_id`)
+        REFERENCES `pictures`(`picture_id`)
         ON DELETE SET NULL;
 
-ALTER TABLE `ip_materials` 
-     ADD FOREIGN KEY `fk_materials_pictures`(`picture_id`) 
-        REFERENCES `pictures`(`picture_id`) 
+ALTER TABLE `ip_materials`
+     ADD FOREIGN KEY `fk_materials_pictures`(`picture_id`)
+        REFERENCES `pictures`(`picture_id`)
         ON DELETE SET NULL;
 
-ALTER TABLE `ip_product_materials` 
-     ADD FOREIGN KEY `fk_ip_prod_matr_product`(`product_id`) 
+ALTER TABLE `ip_product_materials`
+     ADD FOREIGN KEY `fk_ip_prod_matr_product`(`product_id`)
         REFERENCES `products`(`product_id`);
 
-ALTER TABLE `ip_product_materials` 
-     ADD FOREIGN KEY `fk_ip_prod_matr_material`(`material_id`) 
+ALTER TABLE `ip_product_materials`
+     ADD FOREIGN KEY `fk_ip_prod_matr_material`(`material_id`)
         REFERENCES `materials`(`material_id`);
 
 ---
@@ -204,49 +204,61 @@ CREATE TABLE `ip_incom_custom` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-ALTER TABLE `ip_provider_notes` 
-     ADD FOREIGN KEY `fk_provider_notes_provider`(`provider_id`) 
-        REFERENCES `ip_providers`(`provider_id`);  
+ALTER TABLE `ip_provider_notes`
+     ADD FOREIGN KEY `fk_provider_notes_provider`(`provider_id`)
+        REFERENCES `ip_providers`(`provider_id`);
 
-ALTER TABLE `ip_incoms` 
-     ADD FOREIGN KEY `fk_incom_user`(`user_id`) 
-        REFERENCES `ip_users`(`user_id`);  
-ALTER TABLE `ip_incoms` 
-     ADD FOREIGN KEY `fk_incom_provider`(`provider_id`) 
-        REFERENCES `ip_providers`(`provider_id`);  
+ALTER TABLE `ip_incoms`
+     ADD FOREIGN KEY `fk_incom_user`(`user_id`)
+        REFERENCES `ip_users`(`user_id`);
+ALTER TABLE `ip_incoms`
+     ADD FOREIGN KEY `fk_incom_provider`(`provider_id`)
+        REFERENCES `ip_providers`(`provider_id`);
 
-ALTER TABLE `ip_incom_amounts` 
-     ADD FOREIGN KEY `fk_incom_amounts_incom`(`incom_id`) 
-        REFERENCES `ip_incoms`(`incom_id`);  
+ALTER TABLE `ip_incom_amounts`
+     ADD FOREIGN KEY `fk_incom_amounts_incom`(`incom_id`)
+        REFERENCES `ip_incoms`(`incom_id`);
 
-ALTER TABLE `ip_incom_items` 
-     ADD FOREIGN KEY `fk_incom_items_incom`(`incom_id`) 
-        REFERENCES `ip_incoms`(`incom_id`);  
-ALTER TABLE `ip_incom_items` 
-     ADD FOREIGN KEY `fk_incom_items_incom`(`item_tax_rate_id`) 
-        REFERENCES `ip_tax_rates`(`tax_rate_id`);  
-ALTER TABLE `ip_incom_items` 
-     ADD FOREIGN KEY `fk_incom_items_material`(`item_material_id`) 
-        REFERENCES `ip_materials`(`material_id`);  
-ALTER TABLE `ip_incom_items` 
-     ADD FOREIGN KEY `fk_incom_items_pictures`(`item_picture_id`) 
-        REFERENCES `pictures`(`picture_id`);  
+ALTER TABLE `ip_incom_items`
+     ADD FOREIGN KEY `fk_incom_items_incom`(`incom_id`)
+        REFERENCES `ip_incoms`(`incom_id`);
+ALTER TABLE `ip_incom_items`
+     ADD FOREIGN KEY `fk_incom_items_incom`(`item_tax_rate_id`)
+        REFERENCES `ip_tax_rates`(`tax_rate_id`);
+ALTER TABLE `ip_incom_items`
+     ADD FOREIGN KEY `fk_incom_items_material`(`item_material_id`)
+        REFERENCES `ip_materials`(`material_id`);
+ALTER TABLE `ip_incom_items`
+     ADD FOREIGN KEY `fk_incom_items_pictures`(`item_picture_id`)
+        REFERENCES `pictures`(`picture_id`);
 
-ALTER TABLE `ip_incom_amounts` 
-     ADD FOREIGN KEY `fk_incom_amounts_incom`(`incom_id`) 
-        REFERENCES `ip_incoms`(`incom_id`);  
+ALTER TABLE `ip_incom_amounts`
+     ADD FOREIGN KEY `fk_incom_amounts_incom`(`incom_id`)
+        REFERENCES `ip_incoms`(`incom_id`);
 
-ALTER TABLE `ip_incom_tax_rates` 
-     ADD FOREIGN KEY `fk_incom_tax_rates_incom`(`incom_id`) 
-        REFERENCES `ip_incoms`(`incom_id`);  
-ALTER TABLE `ip_incom_tax_rates` 
-     ADD FOREIGN KEY `fk_incom_tax_rates_tax_rate`(`tax_rate_id`) 
-        REFERENCES `ip_tax_rates`(`tax_rate_id`);  
+ALTER TABLE `ip_incom_tax_rates`
+     ADD FOREIGN KEY `fk_incom_tax_rates_incom`(`incom_id`)
+        REFERENCES `ip_incoms`(`incom_id`);
+ALTER TABLE `ip_incom_tax_rates`
+     ADD FOREIGN KEY `fk_incom_tax_rates_tax_rate`(`tax_rate_id`)
+        REFERENCES `ip_tax_rates`(`tax_rate_id`);
 
 ALTER TABLE `ip_products`
     ADD COLUMN `product_url` TEXT DEFAULT NULL;
 ALTER TABLE `ip_materials`
     ADD COLUMN `family_id` TEXT DEFAULT NULL;
-ALTER TABLE `ip_materials` 
-     ADD FOREIGN KEY `fk_material_family_id`(`family_id`) 
-        REFERENCES `ip_family`(`family_id`);  
+ALTER TABLE `ip_materials`
+     ADD FOREIGN KEY `fk_material_family_id`(`family_id`)
+        REFERENCES `ip_family`(`family_id`);
+
+ALTER TABLE `ip_invoice_items`
+     ADD COLUMN `item_material_id` INT(11) DEFAULT NULL,
+     ADD FOREIGN KEY `fk_invoice_items_materials`(`item_material_id`)
+        REFERENCES `materials`(`material_id`)
+        ON DELETE SET NULL;
+
+ALTER TABLE `ip_quote_items`
+     ADD COLUMN `item_material_id` INT(11) DEFAULT NULL,
+     ADD FOREIGN KEY `fk_quote_items_materials`(`item_material_id`)
+        REFERENCES `materials`(`material_id`)
+        ON DELETE SET NULL;
