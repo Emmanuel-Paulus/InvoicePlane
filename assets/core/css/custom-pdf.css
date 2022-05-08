@@ -1,6 +1,164 @@
-/* =============================================================================
-   InvoicePlane
-   Custom Stylesheet
+.clearfix:after {
+	content: "";
+	display: table;
+	clear: both
+}
 
-   All changes made in this file will override the default styles in PDFs.
-   ========================================================================== */
+a {
+	color: #375bc8;
+	text-decoration: underline
+}
+
+body {
+	position: relative;
+	width: 21cm;
+	height: 29.7cm;
+	margin: 0 auto;
+	color: #3A3A3A;
+	background: #FFFFFF;
+	font-family: sans-serif;
+	font-size: 14px
+}
+
+header {
+	padding: 10px 0;
+	margin-bottom: 30px
+}
+
+#logo {
+	width: 40%;
+	float: left;
+	text-align: left;
+    margin-left: 0px;   
+    margin-top: -50px;   
+	margin-bottom: 0px;				
+}
+
+#invoice-logo {
+	max-height: 125px;
+	text-align: left;
+}
+
+.invoice-title {
+	color: #375bc8;
+	font-size: 2em;
+	line-height: 1.4em;
+	font-weight: normal;
+	margin: 20px 0;
+}
+
+#company {
+	margin-top: 30px;
+	float:left;
+	text-align: left;
+	width: 40%;
+}
+
+#bank {
+	float: left;
+	text-align: left;
+	width: 40%;
+}
+
+#factuurnr {
+	border: 1px solid #600070;
+	float: right;
+	text-align: center;
+	width: 40%;
+	margin-right: 2%;
+	background: #D3D3D3;
+	font-size: 16px;
+}
+
+#client {
+	float: right;
+	text-align: right;
+	width: 55%;
+	margin-right: 5%;
+}
+
+#invoice-details {
+	float: right;
+	width: 37%;
+	text-align: left;
+	margin-right: 0%;
+}
+
+#invoice-details table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	text-align: left;
+	width: 100%;
+	margin: 0 0 0 0;
+	font-size: 12px;
+}
+
+#invoice-details table td {
+	width: auto;
+	margin: 0;
+	padding: 0 0 0 0;
+}
+
+table.item-table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin-bottom: 20px;
+	font-size: 12px;
+}
+
+table.item-table tr:nth-child(2n-1) td {
+	background: #F5F5F5;
+}
+
+table.item-table th {
+	padding: 10px 15px;
+	border-bottom: 1px solid #606060;
+	border-top: 1px solid #606060;
+	white-space: nowrap;
+	text-align: left;
+}
+
+table.item-table th.text-right {
+	text-align: right;
+}
+
+table.item-table td {
+	border-bottom: 1px solid #808080;
+	padding: 10px 15px;
+}
+
+table.item-table .invoice-sums {
+	text-align: right;
+}
+
+footer {
+	border-top: 0px none;
+	color: #878686;
+	width: 100%;
+	padding: 8px 0;
+}
+
+.onderraan {
+	border-top: 2px solid #878686;
+	text-align: center;
+	color: #878686;
+	width: 100%;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-red {
+	color: #ea5340;
+}
+
+.text-green {
+	color: #77b632;
+}
+
+.attesttitel {
+	text-align: center;
+	font-size: 16px;
+}

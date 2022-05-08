@@ -16,3 +16,8 @@ adminer.php
 /.php_cs.cache
 /doc
 /.vscode/settings.json
+application/views/code/aanmaning1.inc
+application/views/code/aanmaning2.inc
+application/views/code/attest-6pct.inc
+application/views/code/Factuur.inc
+application/views/code/factuur_html.inc
