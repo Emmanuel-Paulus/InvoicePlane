@@ -268,7 +268,7 @@ $lang = array(
     'invoice_overview_period'                      => 'Factuuroverzichtsperiode',
     'invoice_password'                             => 'PDF-wachtwoord (optioneel)',
     'invoice_pdf_include_zugferd'                  => 'Voeg ZUGFeRD toe',
-    'invoice_pdf_include_zugferd_help'             => 'Het activeren van deze optie zal ZUGFeRD XML activeren in PDF facturen, dat is een XML-standaard voor facturen. <a 
+    'invoice_pdf_include_zugferd_help'             => 'Het activeren van deze optie zal ZUGFeRD XML activeren in PDF facturen, dat is een XML-standaard voor facturen. <a
 href="https://go.invoiceplane.com/zugferdinfo">Meer informatie</a>',
     'invoice_pre_password'                         => 'Standaard PDF-factuur wachtwoord (optioneel)',
     'invoice_sumex'                                => 'Sumex',
@@ -467,6 +467,7 @@ href="https://go.invoiceplane.com/zugferdinfo">Meer informatie</a>',
     'sales_by_client'                              => 'Verkopen per klant',
     'sales_by_date'                                => 'Verkopen per datum',
     'sales_with_tax'                               => 'Verkopen met btw',
+    'sales_tax'                                    => 'BTW Verkopen',
     'save'                                         => 'Opslaan',
     'save_item_as_lookup'                          => 'Product opslaan als zoekopdracht',
     'select_family'                                => 'Selecteer productgroep',
@@ -722,7 +723,7 @@ href="https://go.invoiceplane.com/zugferdinfo">Meer informatie</a>',
     // Types
     'true'                                         => 'Waar',
     'false'                                        => 'Onwaar',
-    
+
     // material
     'material_description'                          => 'Materiaalomschrijving',
     'material_name'                                 => 'Materiaalnaam',
@@ -751,14 +752,14 @@ href="https://go.invoiceplane.com/zugferdinfo">Meer informatie</a>',
     'select_picture'                               => 'Selecter een Afbeelding',
     'create_picture'                               => 'Afbeelding opladen',
     'view_pictures'                                => 'Bekijk Afbeeldingen',
-    
+
     'add_incom_tax'                                => 'Voeg inkomende factuur btw toe',
     'approve_this_incom'                           => 'Keur deze inkomende factuur goed',
     'copy_incom'                                   => 'Kopieer inkomende factuur',
     'create_incom'                                 => 'Inkomende factuur aanmaken',
     'delete_incom'                                 => 'Verwijder inkomende factuur',
     'delete_incom_warning'                         => 'Indien u deze inkomende factuur verwijdert, kunt u deze niet meer terughalen. Weet u zeker dat u deze inkomende factuur wilt verwijderen?',
-    'open_incoms'                                  => 'Open inkomende facturen',   
+    'open_incoms'                                  => 'Open inkomende facturen',
     'incom'                                        => 'Inkomende factuur',
     'incom_approved'                               => 'Deze inkomende factuur is goedgekeurd',
     'incom_amounts'                                => 'Inkomende factuur Aantal',

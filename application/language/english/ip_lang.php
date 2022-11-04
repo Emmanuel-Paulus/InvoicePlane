@@ -469,6 +469,7 @@ $lang = array(
     'sales_by_client'                              => 'Sales by Client',
     'sales_by_date'                                => 'Sales by Date',
     'sales_with_tax'                               => 'Sales with Tax',
+    'sales_tax'                                    => 'Tax on Sales',
     'save'                                         => 'Save',
     'save_item_as_lookup'                          => 'Save item as lookup',
     'select_family'                                => 'Select family',
@@ -725,7 +726,7 @@ $lang = array(
     // Types
     'true'                                         => 'True',
     'false'                                        => 'False',
-    
+
     // material
     'material_description'                          => 'Material description',
     'material_name'                                 => 'Material name',
@@ -754,14 +755,14 @@ $lang = array(
     'select_picture'                               => 'Select Picture',
     'create_picture'                               => 'Create Picture',
     'view_pictures'                                => 'View Picture',
-    
+
     'add_incom_tax'                                => 'Add incomming invoice Tax',
     'approve_this_incom'                           => 'Approve This Incomming Invoice',
     'copy_incom'                                   => 'Copy Incomming Invoice',
     'create_incom'                                 => 'Create Incomming Invoice',
     'delete_incom'                                 => 'Delete Quote',
     'delete_incom_warning'                         => 'If you delete this Incomming Invoice you will not be able to recover it later. Are you sure you want to permanently delete this Incomming Invoice?',
-    'open_incoms'                                  => 'Open Incomming Invoices',   
+    'open_incoms'                                  => 'Open Incomming Invoices',
     'incom'                                        => 'Incomming Invoices',
     'incom_approved'                               => 'This Incomming Invoice has been approved',
     'incom_amounts'                                => 'Incomming Invoice Amounts',
